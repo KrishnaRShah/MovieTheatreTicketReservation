@@ -1,0 +1,88 @@
+	# create users
+INSERT INTO users (email, registered, `password`, `name`) VALUES ('user1@example.com', TRUE, 'user1', 'User One'),
+																 ('user2@example.com', FALSE, 'user2', 'User Two'),
+                                                                 ('user3@example.com', TRUE, 'user3', 'User Three'),
+                                                                 ('user4@example.com', FALSE, 'user4', 'User Four'),
+                                                                 ('user5@example.com', TRUE, 'user5', 'User Five');
+# create card for users
+INSERT INTO cards (name_on_card, card_number, expiry_date, cvv, user_id) VALUES ('User One', '0123456789012345', '2027-03-14', '123', 1),
+																				('User Two', '0123456789012345', '2026-04-16', '234', 2),
+                                                                                ('User Three', '0123456789012345', '2022-12-14', '345', 3),
+                                                                                ('User Four', '0123456789012345', '2024-02-14', '456', 4),
+                                                                                ('User Five', '0123456789012345', '2028-09-01', '567', 5);
+
+# Create a movie archive
+INSERT INTO movie_archive (`name`, summary, length, date_available) VALUES ('Black Panther', 'Wakandan Super Hero', 115, NULL),
+																				   ('Dragon Ball', 'He not beating Goku!', 182, '2022-05-06'),
+                                                                                   ("The Dark Knight", "Bat guy saves Gotham", 145, '2022-08-25'),
+                                                                                   ('Interstellar', 'Goat movie', 190, NULL),
+                                                                                   ('Jujutsu Kaisen', 'Goat anime', 170, NULL),
+                                                                                   ("Woman is King", "Woman warriors in africa", 123, '2022-08-25'),
+                                                                                   ('Ant Man', 'Little super hero', 90, NULL),
+                                                                                   ('Demon Slayer', 'Shoutout Zenitsu', 180, NULL),
+                                                                                   ("Tarzan", "Man monkey swings in jungle", 123, '2022-08-25'),
+                                                                                   ('Tokyo Drift', 'Driving cars and allat', 120, '2022-12-01');
+
+# Create two movie showings per movie in archive
+INSERT INTO movie_shows (movie_id, showtime, seat_price) VALUES (1, '2022-12-07 08:00:00', 14.99),
+																    (1, '2022-12-08 09:00:00', 14.99),
+																    (2, '2022-12-02 17:00:00', 24.99),
+																    (2, '2022-12-03 18:00:00', 24.99),
+																	(3, '2022-12-09 21:30:00', 19.99),
+																	(3, '2022-12-10 22:30:00', 19.99),
+																    (4, '2022-12-12 22:00:00', 25.99),
+																    (4, '2022-12-13 21:00:00', 25.99),
+																	(5, '2022-12-19 17:00:00', 29.99),
+																    (5, '2022-12-20 19:00:00', 29.99),
+                                                                    (6, '2022-12-01 16:30:00', 14.99),
+																    (6, '2022-12-02 17:45:00', 14.99),
+																    (7, '2022-12-02 13:30:00', 24.99),
+																    (7, '2022-12-03 20:00:00', 24.99),
+																	(8, '2022-12-09 12:00:00', 19.99),
+																	(8, '2022-12-10 14:30:00', 19.99),
+																    (9, '2022-12-12 10:00:00', 25.99),
+																    (9, '2022-12-13 12:30:00', 25.99),
+																	(10, '2022-12-19 15:00:00', 29.99),
+																    (10, '2022-12-20 19:30:00', 29.99);
+
+# Create theatres for each movie offering
+INSERT INTO theatres (movie_shows_id, `number`, capacity, seats_occupied) VALUES (1, 1, DEFAULT, 1),
+																				  (2, 2, DEFAULT, 1),
+                                                                                  (3, 1, DEFAULT, 1),
+                                                                                  (4, 2, DEFAULT, 1),
+                                                                                  (5, 1, DEFAULT, 1),
+                                                                                  (6, 2, DEFAULT, 1),
+                                                                                  (7, 1, DEFAULT, 1),
+                                                                                  (8, 2, DEFAULT, 1),
+                                                                                  (9, 1, DEFAULT, 1),
+                                                                                  (10, 2, DEFAULT, 1),
+                                                                                  (11, 3, DEFAULT, 1),
+																				  (12, 4, DEFAULT, 1),
+                                                                                  (13, 3, DEFAULT, 1),
+                                                                                  (14, 4, DEFAULT, 1),
+                                                                                  (15, 5, DEFAULT, 1),
+                                                                                  (16, 6, DEFAULT, 1),
+                                                                                  (17, 5, DEFAULT, 1),
+                                                                                  (18, 6, DEFAULT, 1),
+                                                                                  (19, 1, DEFAULT, 1),
+                                                                                  (20, 2, DEFAULT, 1);
+                                                                                  
+# Create reserved seats for each movie offering's theatre
+INSERT INTO seats (`row`, col, `number`, theatre_id, reserved, price) VALUES (0, 0, 1, 1, DEFAULT, 14.99),
+																			 (0, 1, 2, 2, DEFAULT, 14.99),
+																			 (1, 0, 15, 3, DEFAULT, 24.99),
+																			 (1, 1, 16, 4, DEFAULT, 24.99),
+																			 (1, 2, 17, 5, DEFAULT, 19.99),
+																			 (1, 2, 17, 6, DEFAULT, 19.99),
+																			 (1, 2, 17, 7, DEFAULT, 25.99),
+																			 (1, 2, 17, 8, DEFAULT, 25.99),
+																			 (1, 2, 17, 9, DEFAULT, 29.99),
+																			 (1, 2, 17, 10, DEFAULT, 29.99),
+                                                                             (0, 0, 1, 11, DEFAULT, 14.99),
+																			 (0, 1, 2, 12, DEFAULT, 14.99),
+																			 (1, 0, 15, 13, DEFAULT, 24.99),
+																			 (1, 1, 16, 14, DEFAULT, 24.99),
+																			 (1, 2, 17, 15, DEFAULT, 19.99),
+																			 (1, 2, 17, 16, DEFAULT, 19.99),
+																			 (1, 2, 17, 17, DEFAULT, 25.99),
+																			 (1, 2, 17, 18, DEFAULT, 25.99)
