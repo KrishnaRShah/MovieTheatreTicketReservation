@@ -1,7 +1,7 @@
 package controller;
 
 public class DBController {
-    private Connection connector;
+    //private Connection connector;
 
     String DB_URL;
     String DB_Username;
