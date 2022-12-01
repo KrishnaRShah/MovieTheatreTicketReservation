@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 
+//HELLO?
 public class Movie {
     private ArrayList<Showtime> showtimes;
     private String movieName;
