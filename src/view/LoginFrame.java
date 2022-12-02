@@ -1,10 +1,16 @@
-package MovieTheatreTicketReservation.view;
+package view;
+
+import controller.LoginController;
 
 import javax.swing.*;
+import javax.swing.plaf.FontUIResource;
+import javax.swing.text.StyleContext;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Locale;
 
-public class LoginFrame extends JFrame{
+public class LoginFrame extends JFrame {
     private JLabel titleLabel1;
     private JLabel titleLabel2;
     private JLabel labelUsername;
@@ -21,7 +27,7 @@ public class LoginFrame extends JFrame{
     private String inUsername;
     private String inPass;
 
-    public LoginFrame(){
+    public LoginFrame() {
         setContentPane(loginPanel);
         setTitle("Login As RU");
         setSize(700, 500);
@@ -32,17 +38,22 @@ public class LoginFrame extends JFrame{
                 inUsername = tfUsername.getText();
                 inPass = tfPass.getText();
 
-                if (inUsername.equals("") || inPass.equals("") || inUsername.equals(" ") || inPass.equals(" ")){
+                if (inUsername.equals("") || inPass.equals("") || inUsername.equals(" ") || inPass.equals(" ")) {
                     successText.setText("Invalid! One or more forms are missing!");
                 } else {
                     successText.setText("Input entered.");
                 }
 
-                System.out.println("Username: " + inUsername);
-                System.out.println("Password: " + inPass);
+                LoginController lc = new LoginController();
+
+
+                if (lc.verifyUser(inUsername, inPass)){
+                    successText.setText("Logging in!");
+                } else {
+                    successText.setText("Not Registered!");
+                }
 
                 //CHECK WITH DB HERE IF VALID PASSWORD, IF VALID PASSWORD, CONTINUE TO MOVIE ANNOUNCEMENT
-
             }
         });
 
@@ -53,4 +64,5 @@ public class LoginFrame extends JFrame{
             }
         });
     }
+
 }

@@ -17,7 +17,7 @@ public class DBController {
     String DB_USERNAME = "ensf";
     String DB_PASSWORD = "480";
 
-    //Constructor to intialize connection to database
+    //Constructor to initialize connection to database
     private DBController(){
         try {
             this.connector = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
@@ -35,72 +35,36 @@ public class DBController {
 		return instance;
 	}
 
+    public ResultSet query(String query, Object... args){
+        try{
+            PreparedStatement statement = connector.prepareStatement(query);
+
+            for (int i = 0; i < args.length; i++){
+                statement.setObject(i + 1, args[i]);
+            }
+
+            ResultSet results = statement.executeQuery();
+            return results;
+        } catch(SQLException e){
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public void execute(String query, Object... args){
+        try {
+            PreparedStatement statement = connector.prepareStatement(query);
+            for (int i = 0; i < args.length; i++){
+                statement.setObject(i + 1, args[i]);
+            }
+
+            statement.execute();
+
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
 
 }
 
-
-
-/*
- * 
- * 
- * TESTING TO CHECK IF I CAN GRAB/UPDATE FROM DATABASE
- * 
- * 
- */
-
-//RESULTS USED FOR TESTING
-//static ResultSet results;
-
-// public static void print(DBController test){
-    
-//     try {
-//         Statement testStatement = connector.createStatement();
-//         results = testStatement.executeQuery("SELECT * FROM movie_shows");
-
-//         while (results.next()){
-//             System.out.println("Print results: " + results.getString("id") + ", " + results.getString("showtime"));
-//         }
-
-//     }catch (SQLException e) {
-//         e.printStackTrace();
-//     }
-// }
-
-// public static void update(DBController test){
-    
-//     try {
-        
-//         String query = "INSERT INTO movie_archive (id,name, summary, length, date_available) VALUES (?,?,?,?,?)";
-//         PreparedStatement myStmt = connector.prepareStatement(query);
-
-//         myStmt.setString(1, "121");
-//         myStmt.setString(2, "Krishna's Movie");
-//         myStmt.setString(3, "GROUP 18");
-//         myStmt.setString(4, "30");
-//         myStmt.setString(5, "2022-12-01");
-
-        
-//         int rowCount = myStmt.executeUpdate();
-//         System.out.println("Rows affected: " + rowCount);
-        
-//         myStmt.close();
-
-//     } catch (SQLException ex) {
-//         ex.printStackTrace();
-//     }
-// }
-
-
-
-
-// public static void main(String[] args) {
-
-//     DBController test = new DBController();
-
-//     print(test);
-
-//     //update(test);
-
-//     System.out.println("work??");
-    
-// }

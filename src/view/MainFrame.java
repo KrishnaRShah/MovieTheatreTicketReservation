@@ -1,4 +1,4 @@
-package MovieTheatreTicketReservation.view;
+package view;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -9,10 +9,11 @@ public class MainFrame extends JFrame {
     private JButton loginButton;
     private JButton continueAsGuestButton;
     private JButton cancelTicketButton;
-    private JPanel mainMenuPanel;
+    public JPanel mainMenuPanel;
     private JButton registerButton;
 
-    public MainFrame(){
+    public MainFrame() {
+
         setContentPane(mainMenuPanel);
         setTitle("Movie Theatre Ticket Reservation System");
         setSize(450, 700);

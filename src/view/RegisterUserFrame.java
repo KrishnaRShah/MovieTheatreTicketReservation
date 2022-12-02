@@ -1,4 +1,6 @@
-package MovieTheatreTicketReservation.view;
+package view;
+
+import controller.RegUserInformationController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,7 +21,9 @@ public class RegisterUserFrame extends JFrame {
     private JLabel lbUsername;
     private JPanel regUserPanel;
     private JLabel successText;
+    private JTextField tfFullName;
 
+    private String inFullName;
     private String inUsername;
     private String inPass;
     private String inEmail;
@@ -27,11 +31,12 @@ public class RegisterUserFrame extends JFrame {
     private String inCVV;
     private String inExpiryDate;
 
-    public RegisterUserFrame(){
+    public RegisterUserFrame() {
         setContentPane(regUserPanel);
         setTitle("Create An Account");
-        setSize(850, 500);
-        setMinimumSize(new Dimension(850, 500));
+        setSize(900, 500);
+        setMinimumSize(new Dimension(900, 500));
+        setResizable(false);
 
         submitButton.addActionListener(new ActionListener() {
             @Override
@@ -39,9 +44,11 @@ public class RegisterUserFrame extends JFrame {
 
                 if (tfUsername.getText().equals("") || tfPassword.getText().equals("") || tfEmail.getText().equals("") ||
                         tfCardNum.getText().equals("") || tfCVV.getText().equals("") || tfExpiryDate.getText().equals("")
-                        || tfCVV.getText().length() > 3) {
+                        || tfCVV.getText().length() != 3 || tfCardNum.getText().length() != 16 || !tfExpiryDate.getText().contains("/")
+                        || tfFullName.getText().equals("")) {
                     successText.setText("One or more inputs is invalid!");
                 } else {
+                    inFullName = tfFullName.getText();
                     inUsername = tfUsername.getText();
                     inPass = tfPassword.getText();
                     inEmail = tfEmail.getText();
@@ -49,14 +56,14 @@ public class RegisterUserFrame extends JFrame {
                     inCVV = tfCVV.getText();
                     inExpiryDate = tfExpiryDate.getText();
 
-                    successText.setText("Registering User!");
-
-                    System.out.println(inUsername);
-                    System.out.println(inPass);
-                    System.out.println(inEmail);
-                    System.out.println(inCardNum);
-                    System.out.println(inCVV);
-                    System.out.println(inExpiryDate);
+                    RegUserInformationController regController = new RegUserInformationController();
+                    boolean temp = regController.registerUser(inUsername, inPass, inEmail, inFullName);
+                    boolean newTemp = regController.registerCard(inFullName, inCardNum, inCVV, inExpiryDate);
+                    if (newTemp && temp){
+                        successText.setText("Registering User!");
+                    } else {
+                        successText.setText("Account Already Exists!");
+                    }
                 }
             }
         });
@@ -68,4 +75,5 @@ public class RegisterUserFrame extends JFrame {
             }
         });
     }
+
 }
