@@ -36,5 +36,26 @@ public class SeatController {
         return resVerified;
     }
 
+    public  String ticketPrice(String id){
+        //SQL query
+        String query = "SELECT * FROM seats";
+        ResultSet results = DB.query(query);
+        String resPrice = " ";
+        try {
+            while (results.next()){
+                String resId = results.getString("id");
+                resPrice = results.getString("price");
+
+                if (id.equals(resId)){
+                    break;
+                }
+            }
+
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return resPrice;
+    }
+
 
 }

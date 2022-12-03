@@ -20,7 +20,7 @@ public class SeatSelect implements ActionListener {
     JButton reset;
 
 
-    private boolean confirmSeat;
+    boolean confirmSeat;
     //list to keep track of button
     private  ArrayList<Seat> seatList;
     private ArrayList<JToggleButton> buttonArrayList;
@@ -32,11 +32,12 @@ public class SeatSelect implements ActionListener {
 
     AbstractButton abstractButtom;
     Seat currentSelected;
-    private SeatController sc;
-    private Seat seat;
+    SeatController sc;
+    private Seat seat = null;
 
     public SeatSelect( ) {
 
+        currentSelected = new Seat(0,"0", " ");
         sc = new SeatController();
         int size = (rows * columns) + 1;
 
@@ -84,7 +85,7 @@ public class SeatSelect implements ActionListener {
                 //id of seat
                 String id = String.valueOf(idNum);
 
-                seat = new Seat(idNum,"1");
+                seat = new Seat(idNum,"1", (char)charNum + addString);
                 seatList.add(idNum, seat);
                 buttonArrayList.add(idNum,button);
                 //check if seat is reserved
@@ -128,10 +129,10 @@ public class SeatSelect implements ActionListener {
         this.mainPanel.add(gridLayout);
 
         String confirmString = "Confirm Seats";
-        this.confirm = new JButton(confirmString);
-        this.confirm.setBounds(443, 420, 150, 30);
-        this.confirm.addActionListener(this);
-        this.mainPanel.add(this.confirm);
+//        this.confirm = new JButton(confirmString);
+//        this.confirm.setBounds(443, 420, 150, 30);
+//        this.confirm.addActionListener(this);
+//        this.mainPanel.add(this.confirm);
 
         String resetString = "Reset Test";
         this.reset = new JButton(resetString);
@@ -148,15 +149,15 @@ public class SeatSelect implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent var1) {
-        if (var1.getSource() == this.confirm) {
-            this.confirmSeat = true;
-            System.out.println(currentSelected.getSeatNumber());
-            for(int i = 1; i < seatList.size(); i++){
-                if(seatList.get(i).isReserved().equals("0")){
-                    sc.updateSeat(String.valueOf(i), "0");
-                }
-            }
-        }
+//        if (var1.getSource() == this.confirm) {
+//            this.confirmSeat = true;
+//            System.out.println(currentSelected.getSeatNumber());
+//            for(int i = 1; i < seatList.size(); i++){
+//                if(seatList.get(i).isReserved().equals("0")){
+//                    sc.updateSeat(String.valueOf(i), "0");
+//                }
+//            }
+//        }
 
         if (var1.getSource() == this.reset) {
             this.confirmSeat = false;
@@ -182,6 +183,7 @@ public class SeatSelect implements ActionListener {
             Seat tempSeat = seatList.get(i);
             tempSeat.setSeatReserved("1");
             seatList.set(i, tempSeat);
+
             //reset button
             notButton(buttonArrayList.get(i));
             buttonArrayList.get(i).setSelected(false);
@@ -197,7 +199,11 @@ public class SeatSelect implements ActionListener {
         button.setContentAreaFilled(true);
     }
 
-
+    public String getPrice(){
+        if(currentSelected.getSeatNumber() == 0) return " ";
+        String temp = sc.ticketPrice(String.valueOf(currentSelected.getSeatNumber()));
+        return  temp;
+    }
     public JPanel getMainPanel(){
         return mainPanel;
     }

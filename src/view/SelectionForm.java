@@ -84,6 +84,9 @@ public class SelectionForm extends JFrame {
     private int theatreChoice = -1;
     private int showtimeChoice = -1;
 
+    private int seatChoice = -1;
+    private String priceChoice = "";
+
     private String firstDate;
     private String firstTime;
     private String secondDate;
@@ -94,6 +97,8 @@ public class SelectionForm extends JFrame {
     private String cardnumber;
     private String CVV;
     private String expiryDate;
+
+    private int ticketNumber = 1;
 
     private HashMap<Integer, String> idNameMap = new HashMap<>();
     private HashMap<Integer, String> theatreNameMap = new HashMap<>();
@@ -455,8 +460,21 @@ public class SelectionForm extends JFrame {
         GridBagConstraints gbc = new GridBagConstraints();
         seatsGridPanel.add(seatSelect.mainLabel);
         seatsGridPanel.add(seatSelect.gridLayout);
-        seatsGridPanel.add(seatSelect.confirm);
         seatsGridPanel.add(seatSelect.reset);
+
+        //adding confirm
+        String confirmString = "Set Seat";
+        seatSelect.confirm = new JButton(confirmString);
+        seatSelect.confirm.setBounds(443, 420, 150, 30);
+        seatSelect.confirm.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setPaymentInfo();
+                priceChoice = seatSelect.getPrice();
+                seatChoice = seatSelect.getSeat().getSeatNumber();
+            }
+        });
+        seatsGridPanel.add(seatSelect.confirm);
 
         ActionListener listener3 = new ActionListener() {
             @Override
@@ -475,10 +493,14 @@ public class SelectionForm extends JFrame {
 
                     if (fullname.equals("") || email.equals("") || cardnumber.equals("") || CVV.equals("") || expiryDate.equals("")
                     || cardnumber.length() != 16 || CVV.length() != 3 || !expiryDate.contains("/") || choice == -1
-                            || theatreChoice == -1 || showtimeChoice == -1){
+                            || theatreChoice == -1 || showtimeChoice == -1 || seatChoice == -1 || priceChoice.equals("")){
                         paymentSuccessMessage.setText("One or more fields are missing or invalid!");
                     } else {
                         paymentSuccessMessage.setText("Payment Processed. Enjoy your movie!");
+                        seatSelect.sc.updateSeat(String.valueOf(seatChoice), "0");
+                        seatSelect.confirmSeat = true;
+                        System.out.println(ticketNumber);
+                        ticketNumber++;
                         //ADD EMAIL SENDING LOGIC HERE / UPDATE ANY DBS ETC.
                     }
                 }
@@ -574,5 +596,7 @@ public class SelectionForm extends JFrame {
         finalSelectedMovie.setText("Movie: " + idNameMap.get(choice));
         finalSelectedTheatre.setText("Theatre: " + theatreNameMap.get(theatreChoice));
         finalSelectedShowtime.setText("Showtime: " + showtimeChoiceMap.get(showtimeChoice));
+        finalSelectedSeat.setText("Seat: " + seatSelect.getSeat().getSeatId());
+        finalFeeLabel.setText("Price: " + seatSelect.getPrice());
     }
 }

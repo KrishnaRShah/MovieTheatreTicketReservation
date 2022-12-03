@@ -51,6 +51,11 @@ public class LoginFrame extends JFrame {
                     successText.setText("Logging in!");
                     SelectionForm selectionForm = new SelectionForm(true);
                     selectionForm.setVisible(true);
+//                    try {
+//                        Thread.sleep(5000);
+//                    } catch (InterruptedException ex) {
+//                    }
+                    dispose();
                 } else {
                     successText.setText("Not Registered!");
                 }
