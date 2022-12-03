@@ -3,8 +3,13 @@ package model;
 public class Seat {
     private int seatNumber;
     private boolean booked;
-    private boolean reserved;
+    private String reserved;
 
+
+    public Seat(int seatNumber, String reserved){
+        this.seatNumber = seatNumber;
+        this.reserved = reserved;
+    }
     /* GETTERS */
     public int getSeatNumber(){
         return seatNumber;
@@ -14,7 +19,7 @@ public class Seat {
         return booked;
     }
 
-    public boolean isReserved(){
+    public String isReserved(){
         return reserved;
     }
 
@@ -27,7 +32,7 @@ public class Seat {
         this.booked = booked;
     }
 
-    public void setSeatReserved(boolean reserved){
+    public void setSeatReserved(String reserved){
         this.reserved = reserved;
     }
 }
