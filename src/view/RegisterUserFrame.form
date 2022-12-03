@@ -208,7 +208,7 @@
             <properties>
               <background color="-16717572"/>
               <foreground color="-16314349"/>
-              <text value="Cancel"/>
+              <text value="Return to Menu"/>
             </properties>
           </component>
           <hspacer id="643cb">

@@ -1,0 +1,723 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="view.SelectionForm">
+  <grid id="27dc6" binding="selectionPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="0" left="0" bottom="0" right="0"/>
+    <constraints>
+      <xy x="20" y="20" width="1024" height="699"/>
+    </constraints>
+    <properties>
+      <background color="-1"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <tabbedpane id="44925" binding="tabbedPane1" default-binding="true">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="200" height="200"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-14436909"/>
+          <font name="Arial Black" style="1"/>
+          <foreground color="-16314349"/>
+        </properties>
+        <border type="line">
+          <color color="-16314349"/>
+        </border>
+        <children>
+          <grid id="614f3" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <tabbedpane title="Movies"/>
+            </constraints>
+            <properties>
+              <background color="-1"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="25dba" class="javax.swing.JLabel" binding="labelMovies">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Arial Black" size="20" style="1"/>
+                  <foreground color="-16314349"/>
+                  <text value="Select A Movie"/>
+                </properties>
+              </component>
+              <grid id="ec3bf" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-15643809"/>
+                </properties>
+                <border type="none"/>
+                <children>
+                  <grid id="acd86" layout-manager="GridLayoutManager" row-count="21" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                    <margin top="0" left="0" bottom="0" right="0"/>
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                        <preferred-size width="300" height="-1"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <background color="-15643809"/>
+                    </properties>
+                    <border type="none"/>
+                    <children>
+                      <component id="337e6" class="javax.swing.JRadioButton" binding="blackPantherRadioButton" default-binding="true">
+                        <constraints>
+                          <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                            <preferred-size width="250" height="30"/>
+                          </grid>
+                        </constraints>
+                        <properties>
+                          <background color="-15643809"/>
+                          <font name="Arial Black" size="14"/>
+                          <foreground color="-1"/>
+                          <text value="Black Panther"/>
+                        </properties>
+                      </component>
+                      <vspacer id="5de93">
+                        <constraints>
+                          <grid row="20" column="0" row-span="1" col-span="2" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                      </vspacer>
+                      <component id="ce460" class="javax.swing.JRadioButton" binding="dragonBallRadioButton" default-binding="true">
+                        <constraints>
+                          <grid row="3" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                            <preferred-size width="250" height="30"/>
+                          </grid>
+                        </constraints>
+                        <properties>
+                          <background color="-15643809"/>
+                          <font name="Arial Black" size="14"/>
+                          <foreground color="-1"/>
+                          <text value="Dragon Ball"/>
+                        </properties>
+                      </component>
+                      <component id="53371" class="javax.swing.JRadioButton" binding="theDarkKnightRadioButton" default-binding="true">
+                        <constraints>
+                          <grid row="5" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                            <preferred-size width="250" height="30"/>
+                          </grid>
+                        </constraints>
+                        <properties>
+                          <background color="-15643809"/>
+                          <font name="Arial Black" size="14"/>
+                          <foreground color="-1"/>
+                          <text value="The Dark Knight"/>
+                        </properties>
+                      </component>
+                      <component id="fa4b9" class="javax.swing.JRadioButton" binding="interstellarRadioButton" default-binding="true">
+                        <constraints>
+                          <grid row="7" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                            <preferred-size width="250" height="30"/>
+                          </grid>
+                        </constraints>
+                        <properties>
+                          <background color="-15643809"/>
+                          <font name="Arial Black" size="14"/>
+                          <foreground color="-1"/>
+                          <text value="Interstellar"/>
+                        </properties>
+                      </component>
+                      <component id="af5fd" class="javax.swing.JRadioButton" binding="jujutsuKaisenRadioButton" default-binding="true">
+                        <constraints>
+                          <grid row="9" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                            <preferred-size width="250" height="30"/>
+                          </grid>
+                        </constraints>
+                        <properties>
+                          <background color="-15643809"/>
+                          <font name="Arial Black" size="14"/>
+                          <foreground color="-1"/>
+                          <text value="Jujutsu Kaisen"/>
+                        </properties>
+                      </component>
+                      <component id="aa206" class="javax.swing.JRadioButton" binding="womanIsKingRadioButton" default-binding="true">
+                        <constraints>
+                          <grid row="11" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                            <preferred-size width="250" height="30"/>
+                          </grid>
+                        </constraints>
+                        <properties>
+                          <background color="-15643809"/>
+                          <font name="Arial Black" size="14"/>
+                          <foreground color="-1"/>
+                          <text value="Woman is King"/>
+                        </properties>
+                      </component>
+                      <component id="9c114" class="javax.swing.JRadioButton" binding="antManRadioButton" default-binding="true">
+                        <constraints>
+                          <grid row="13" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                            <preferred-size width="250" height="30"/>
+                          </grid>
+                        </constraints>
+                        <properties>
+                          <background color="-15643809"/>
+                          <font name="Arial Black" size="14"/>
+                          <foreground color="-1"/>
+                          <text value="Ant Man"/>
+                        </properties>
+                      </component>
+                      <component id="45641" class="javax.swing.JRadioButton" binding="demonSlayerRadioButton" default-binding="true">
+                        <constraints>
+                          <grid row="15" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                            <preferred-size width="250" height="30"/>
+                          </grid>
+                        </constraints>
+                        <properties>
+                          <background color="-15643809"/>
+                          <font name="Arial Black" size="14"/>
+                          <foreground color="-1"/>
+                          <text value="Demon Slayer"/>
+                        </properties>
+                      </component>
+                      <component id="eeb6" class="javax.swing.JRadioButton" binding="tarzanRadioButton" default-binding="true">
+                        <constraints>
+                          <grid row="17" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                            <preferred-size width="250" height="30"/>
+                          </grid>
+                        </constraints>
+                        <properties>
+                          <background color="-15643809"/>
+                          <font name="Arial Black" size="14"/>
+                          <foreground color="-1"/>
+                          <text value="Tarzan"/>
+                        </properties>
+                      </component>
+                      <component id="12752" class="javax.swing.JRadioButton" binding="tokyoDriftRadioButton" default-binding="true">
+                        <constraints>
+                          <grid row="19" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                            <preferred-size width="250" height="30"/>
+                          </grid>
+                        </constraints>
+                        <properties>
+                          <background color="-15643809"/>
+                          <font name="Arial Black" size="14"/>
+                          <foreground color="-1"/>
+                          <text value="Tokyo Drift"/>
+                        </properties>
+                      </component>
+                      <vspacer id="90632">
+                        <constraints>
+                          <grid row="2" column="0" row-span="1" col-span="2" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                      </vspacer>
+                      <vspacer id="d29c">
+                        <constraints>
+                          <grid row="4" column="0" row-span="1" col-span="2" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                      </vspacer>
+                      <vspacer id="2a186">
+                        <constraints>
+                          <grid row="6" column="0" row-span="1" col-span="2" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                      </vspacer>
+                      <vspacer id="3f845">
+                        <constraints>
+                          <grid row="8" column="0" row-span="1" col-span="2" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                      </vspacer>
+                      <vspacer id="fd8f">
+                        <constraints>
+                          <grid row="10" column="0" row-span="1" col-span="2" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                      </vspacer>
+                      <vspacer id="c73ed">
+                        <constraints>
+                          <grid row="12" column="0" row-span="1" col-span="2" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                      </vspacer>
+                      <vspacer id="a54d3">
+                        <constraints>
+                          <grid row="14" column="0" row-span="1" col-span="2" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                      </vspacer>
+                      <vspacer id="57333">
+                        <constraints>
+                          <grid row="16" column="0" row-span="1" col-span="2" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                      </vspacer>
+                      <vspacer id="92f1b">
+                        <constraints>
+                          <grid row="18" column="0" row-span="1" col-span="2" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                      </vspacer>
+                      <vspacer id="56598">
+                        <constraints>
+                          <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                      </vspacer>
+                    </children>
+                  </grid>
+                  <grid id="1dd1f" binding="imagePanel" layout-manager="GridLayoutManager" row-count="5" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                    <margin top="0" left="0" bottom="0" right="0"/>
+                    <constraints>
+                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                        <preferred-size width="700" height="-1"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <background color="-14436909"/>
+                    </properties>
+                    <border type="none"/>
+                    <children>
+                      <component id="b85d6" class="javax.swing.JLabel" binding="moveImageLabel">
+                        <constraints>
+                          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <foreground color="-16314349"/>
+                          <text value=""/>
+                        </properties>
+                      </component>
+                      <component id="75683" class="javax.swing.JLabel" binding="labelDescription">
+                        <constraints>
+                          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <font name="Arial Black" size="18"/>
+                          <foreground color="-16314349"/>
+                          <text value=""/>
+                        </properties>
+                      </component>
+                      <vspacer id="cfe63">
+                        <constraints>
+                          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
+                            <preferred-size width="-1" height="5"/>
+                          </grid>
+                        </constraints>
+                      </vspacer>
+                      <vspacer id="712cf">
+                        <constraints>
+                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                      </vspacer>
+                      <component id="a0480" class="javax.swing.JLabel" binding="lengthLabel">
+                        <constraints>
+                          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <font name="Arial Black" size="18"/>
+                          <foreground color="-16314349"/>
+                          <text value=""/>
+                        </properties>
+                      </component>
+                    </children>
+                  </grid>
+                </children>
+              </grid>
+            </children>
+          </grid>
+          <grid id="8f822" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <tabbedpane title="Theatres"/>
+            </constraints>
+            <properties>
+              <background color="-1"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="4d16a" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Arial Black" size="20" style="1"/>
+                  <foreground color="-16314349"/>
+                  <text value="Select A Theatre"/>
+                </properties>
+              </component>
+              <grid id="7b9ae" layout-manager="GridLayoutManager" row-count="2" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-1"/>
+                </properties>
+                <border type="none"/>
+                <children>
+                  <grid id="b924f" layout-manager="GridLayoutManager" row-count="6" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                    <margin top="0" left="0" bottom="0" right="0"/>
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <background color="-3092272"/>
+                    </properties>
+                    <border type="none"/>
+                    <children>
+                      <component id="8ebe6" class="javax.swing.JLabel">
+                        <constraints>
+                          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <font name="Arial Black" size="18" style="1"/>
+                          <foreground color="-16314349"/>
+                          <text value="Landmark Cinemas"/>
+                        </properties>
+                      </component>
+                      <component id="ae122" class="javax.swing.JLabel">
+                        <constraints>
+                          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <font name="Arial Black"/>
+                          <foreground color="-16314349"/>
+                          <text value="Address: Landmark Cinemas Avenue SE, Calgary, Alberta "/>
+                        </properties>
+                      </component>
+                      <hspacer id="cade0">
+                        <constraints>
+                          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                      </hspacer>
+                      <hspacer id="1faef">
+                        <constraints>
+                          <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                      </hspacer>
+                      <component id="9ea06" class="javax.swing.JLabel" binding="theatreImage1">
+                        <constraints>
+                          <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value=""/>
+                        </properties>
+                      </component>
+                      <vspacer id="5686">
+                        <constraints>
+                          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                      </vspacer>
+                      <component id="1636d" class="javax.swing.JRadioButton" binding="theatreSelect1">
+                        <constraints>
+                          <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <background color="-3092272"/>
+                          <font name="Arial Black" size="14"/>
+                          <foreground color="-16314349"/>
+                          <text value="Select Landmark Cinemas"/>
+                        </properties>
+                      </component>
+                      <vspacer id="36ea3">
+                        <constraints>
+                          <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                      </vspacer>
+                    </children>
+                  </grid>
+                  <grid id="580e9" layout-manager="GridLayoutManager" row-count="6" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                    <margin top="0" left="0" bottom="0" right="0"/>
+                    <constraints>
+                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <background color="-3092272"/>
+                    </properties>
+                    <border type="none"/>
+                    <children>
+                      <component id="c532c" class="javax.swing.JLabel">
+                        <constraints>
+                          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <font name="Arial Black" size="18" style="1"/>
+                          <foreground color="-16314349"/>
+                          <text value="Cineplex Cinemas"/>
+                        </properties>
+                      </component>
+                      <component id="f4b4b" class="javax.swing.JLabel">
+                        <constraints>
+                          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <font name="Arial Black"/>
+                          <foreground color="-16314349"/>
+                          <text value="Address: Cineplex Street SW, Calgary, Alberta "/>
+                        </properties>
+                      </component>
+                      <vspacer id="27953">
+                        <constraints>
+                          <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                      </vspacer>
+                      <hspacer id="5422a">
+                        <constraints>
+                          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                      </hspacer>
+                      <hspacer id="6aa98">
+                        <constraints>
+                          <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                      </hspacer>
+                      <component id="d98b0" class="javax.swing.JLabel" binding="theatreImage2">
+                        <constraints>
+                          <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value=""/>
+                        </properties>
+                      </component>
+                      <vspacer id="b31db">
+                        <constraints>
+                          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                      </vspacer>
+                      <component id="4dd" class="javax.swing.JRadioButton" binding="theatreSelect2">
+                        <constraints>
+                          <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <background color="-3092272"/>
+                          <font name="Arial Black" size="14"/>
+                          <foreground color="-16314349"/>
+                          <text value="Select Cineplex Cinemas"/>
+                        </properties>
+                      </component>
+                    </children>
+                  </grid>
+                  <grid id="4d02b" layout-manager="GridLayoutManager" row-count="6" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                    <margin top="0" left="0" bottom="0" right="0"/>
+                    <constraints>
+                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <background color="-3092272"/>
+                    </properties>
+                    <border type="none"/>
+                    <children>
+                      <component id="116ae" class="javax.swing.JLabel">
+                        <constraints>
+                          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <font name="Arial Black" size="18" style="1"/>
+                          <foreground color="-16314349"/>
+                          <text value="SilverCity Cinemas"/>
+                        </properties>
+                      </component>
+                      <component id="3f0a8" class="javax.swing.JLabel">
+                        <constraints>
+                          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <font name="Arial Black"/>
+                          <foreground color="-16314349"/>
+                          <text value="Address: SilverCity Way NW, Calgary, Alberta "/>
+                        </properties>
+                      </component>
+                      <vspacer id="300af">
+                        <constraints>
+                          <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                      </vspacer>
+                      <hspacer id="71e56">
+                        <constraints>
+                          <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                      </hspacer>
+                      <hspacer id="29719">
+                        <constraints>
+                          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                      </hspacer>
+                      <component id="e3db2" class="javax.swing.JLabel" binding="theatreImage3">
+                        <constraints>
+                          <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value=""/>
+                        </properties>
+                      </component>
+                      <vspacer id="d4428">
+                        <constraints>
+                          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                      </vspacer>
+                      <component id="d2183" class="javax.swing.JRadioButton" binding="theatreSelect3">
+                        <constraints>
+                          <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <background color="-3092272"/>
+                          <font name="Arial Black" size="14"/>
+                          <foreground color="-16314349"/>
+                          <text value="Select SilverCity Cinemas"/>
+                        </properties>
+                      </component>
+                    </children>
+                  </grid>
+                  <grid id="5d462" layout-manager="GridLayoutManager" row-count="6" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                    <margin top="0" left="0" bottom="0" right="0"/>
+                    <constraints>
+                      <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <background color="-3092272"/>
+                    </properties>
+                    <border type="none"/>
+                    <children>
+                      <component id="de5a6" class="javax.swing.JLabel">
+                        <constraints>
+                          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <font name="Arial Black" size="18" style="1"/>
+                          <foreground color="-16314349"/>
+                          <text value="Globe Cinemas"/>
+                        </properties>
+                      </component>
+                      <component id="adc47" class="javax.swing.JLabel">
+                        <constraints>
+                          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <font name="Arial Black"/>
+                          <foreground color="-16314349"/>
+                          <text value="Address: Globe Cinemas Street NE, Calgary, Alberta "/>
+                        </properties>
+                      </component>
+                      <vspacer id="2845">
+                        <constraints>
+                          <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                      </vspacer>
+                      <hspacer id="33a52">
+                        <constraints>
+                          <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                      </hspacer>
+                      <hspacer id="15236">
+                        <constraints>
+                          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                      </hspacer>
+                      <component id="555e6" class="javax.swing.JLabel" binding="theatreImage4">
+                        <constraints>
+                          <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value=""/>
+                        </properties>
+                      </component>
+                      <vspacer id="f85e4">
+                        <constraints>
+                          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                      </vspacer>
+                      <component id="7a585" class="javax.swing.JRadioButton" binding="theatreSelect4">
+                        <constraints>
+                          <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <background color="-3092272"/>
+                          <font name="Arial Black" size="14"/>
+                          <foreground color="-16314349"/>
+                          <text value="Select Globe Cinemas"/>
+                        </properties>
+                      </component>
+                    </children>
+                  </grid>
+                </children>
+              </grid>
+            </children>
+          </grid>
+          <grid id="f2858" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <tabbedpane title="Showtimes"/>
+            </constraints>
+            <properties>
+              <background color="-1"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="4e2d6" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Arial Black" size="20" style="1"/>
+                  <foreground color="-16314349"/>
+                  <text value="Select A Showtime"/>
+                </properties>
+              </component>
+              <vspacer id="604f4">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </vspacer>
+            </children>
+          </grid>
+          <grid id="7d264" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <tabbedpane title="Seats"/>
+            </constraints>
+            <properties>
+              <background color="-1"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="94603" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Arial Black" size="20" style="1"/>
+                  <foreground color="-16314349"/>
+                  <text value="Select A Seat"/>
+                </properties>
+              </component>
+              <grid id="dad95" binding="seatsGridPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children/>
+              </grid>
+            </children>
+          </grid>
+          <grid id="3126f" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <tabbedpane title="Payment"/>
+            </constraints>
+            <properties>
+              <background color="-1"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="71ae2" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Arial Black" size="20" style="1"/>
+                  <foreground color="-16314349"/>
+                  <text value="Payment"/>
+                </properties>
+              </component>
+              <vspacer id="62c53">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </vspacer>
+            </children>
+          </grid>
+        </children>
+      </tabbedpane>
+    </children>
+  </grid>
+</form>

@@ -5,6 +5,6 @@ public class MovieTheatreTicketSystem {
         //Open main options frame
         MainFrame mainframe = new MainFrame();
         mainframe.setVisible(true);
-
     }
 }
+
