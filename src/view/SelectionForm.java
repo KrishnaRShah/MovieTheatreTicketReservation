@@ -62,7 +62,19 @@ public class SelectionForm extends JFrame {
     private JButton sendGenReceiptBtn;
     private JLabel paymentSuccessMessage;
     private JLabel finalFeeLabel;
-    private JPanel earlyAnnouncementsPanel;
+    private JPanel earlyMoviesPane;
+    private JPanel earlyMoviePanel1;
+    private JPanel earlyMoviePanel2;
+    private JLabel earlyMovie1Name;
+    private JLabel earlyMovie1Desc;
+    private JLabel earlyMovie1Length;
+    private JLabel earlyMovie1Img;
+    private JRadioButton earlyChoice1;
+    private JLabel earlyMovie2Img;
+    private JLabel earlyMovie2Name;
+    private JLabel earlyMovie2Desc;
+    private JLabel earlyMovie2Length;
+    private JRadioButton earlyChoice2;
 
     private SeatSelect seatSelect;
 
@@ -93,11 +105,11 @@ public class SelectionForm extends JFrame {
 
         if (isRegistered){
             System.out.println("Registered User joined");
-            optionsTabbedPane.remove(4);
-
+//            optionsTabbedPane.remove(4);
             //IF IS REGISTERED, UPDATE FULLNAME, CARD NUM, etc values here
         } else {
             System.out.println("Unregistered User Joined");
+            optionsTabbedPane.remove(0);
         }
 
         setContentPane(selectionPanel);
@@ -105,6 +117,7 @@ public class SelectionForm extends JFrame {
         setResizable(false);
         setTitle("Book A Ticket");
         seatsGridPanel.setLayout(null);
+
         ImageIcon temp = new ImageIcon("MovieTheatreTicketReservation/src/view/images/blackpanther.jpg");
         ImageIcon icon = scaleImage(temp, 200, 300);
         icon.getImage().flush();
@@ -117,6 +130,28 @@ public class SelectionForm extends JFrame {
 
         String length = smc.getLength(1);
         lengthLabel.setText("Length: " + length + " minutes");
+
+        //EARLY MOVIES
+        ImageIcon early1 = new ImageIcon("MovieTheatreTicketReservation/src/view/images/legomovie.jpg");
+        ImageIcon early1icon = scaleImage(early1, 200, 300);
+        early1icon.getImage().flush();
+        earlyMovie1Img.setIcon(early1icon);
+        earlyMovie1Img.setVisible(true);
+
+        ImageIcon early2 = new ImageIcon("MovieTheatreTicketReservation/src/view/images/wows.jpg");
+        ImageIcon early2icon = scaleImage(early2, 200, 300);
+        early2icon.getImage().flush();
+        earlyMovie2Img.setIcon(early2icon);
+        earlyMovie2Img.setVisible(true);
+
+        earlyMovie1Name.setText("Movie: The Lego Movie 2");
+        earlyMovie1Desc.setText("Description: " + smc.getSummary(11));
+        earlyMovie1Length.setText("Length: " + smc.getLength(11) + " minutes");
+
+        earlyMovie2Name.setText("Movie: Wolf Of Wall Street");
+        earlyMovie2Desc.setText("Description: " + smc.getSummary(12));
+        earlyMovie2Length.setText("Length: " + smc.getLength(12) + " minutes");
+        //END EARLY MOVIES
 
         ImageIcon temp2 = new ImageIcon("MovieTheatreTicketReservation/src/view/images/landmark.jpg");
         ImageIcon icon2 = scaleImage(temp2, 150, 150);
@@ -159,6 +194,10 @@ public class SelectionForm extends JFrame {
         ButtonGroup group3 = new ButtonGroup();
         group3.add(timeSelect1);
         group3.add(timeSelect2);
+
+        ButtonGroup earlyGroup = new ButtonGroup();
+        earlyGroup.add(earlyChoice1);
+        earlyGroup.add(earlyChoice2);
 
         ActionListener listener = new ActionListener() {
             @Override
@@ -426,13 +465,13 @@ public class SelectionForm extends JFrame {
                 if (e.getSource().equals(finalConfirmBtn)){
                     confirmPressed = true;
 
-                    if (!isRegistered){
+//                    if (!isRegistered){
                         fullname = tfName.getText();
                         email = tfEmail.getText();
                         cardnumber = tfCardnum.getText();
                         CVV = tfCVV.getText();
                         expiryDate = tfExpiryDate.getText();
-                    }
+//                    }
 
                     if (fullname.equals("") || email.equals("") || cardnumber.equals("") || CVV.equals("") || expiryDate.equals("")
                     || cardnumber.length() != 16 || CVV.length() != 3 || !expiryDate.contains("/") || choice == -1
@@ -457,6 +496,28 @@ public class SelectionForm extends JFrame {
         };
         finalConfirmBtn.addActionListener(listener3);
         sendGenReceiptBtn.addActionListener(listener3);
+
+        //EARLY CHOICE ACTION LISTENER
+        ActionListener listener4 = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (e.getSource().equals(earlyChoice1)){
+                    choice = 11;
+                    idNameMap.put(choice, "The Lego Movie 2");
+                    setShowtimeInfo(choice);
+                    setPaymentInfo();
+                }
+
+                if (e.getSource().equals(earlyChoice2)){
+                    choice = 12;
+                    idNameMap.put(choice, "Wolf Of Wall Street");
+                    setShowtimeInfo(choice);
+                    setPaymentInfo();
+                }
+            }
+        };
+        earlyChoice1.addActionListener(listener4);
+        earlyChoice2.addActionListener(listener4);
     }
 
 
