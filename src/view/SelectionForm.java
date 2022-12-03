@@ -11,7 +11,7 @@ import java.util.HashMap;
 
 public class SelectionForm extends JFrame {
     private JPanel selectionPanel;
-    private JTabbedPane earlyAnnouncementTab;
+    private JTabbedPane optionsTabbedPane;
     private JLabel labelMovies;
     private JRadioButton blackPantherRadioButton;
     private JRadioButton dragonBallRadioButton;
@@ -52,15 +52,40 @@ public class SelectionForm extends JFrame {
     private JLabel finalSelectedSeat;
     private JLabel theatreSelected1;
     private JLabel theatreSelected2;
+    private JPanel paymentPanel;
+    private JTextField tfName;
+    private JTextField tfEmail;
+    private JTextField tfCardnum;
+    private JTextField tfCVV;
+    private JTextField tfExpiryDate;
+    private JButton finalConfirmBtn;
+    private JButton sendGenReceiptBtn;
+    private JLabel paymentSuccessMessage;
+    private JLabel finalFeeLabel;
     private JPanel earlyAnnouncementsPanel;
 
+    private SeatSelect seatSelect;
+
     private boolean isRegistered;
-    private int choice;
-    private int theatreChoice;
-    private int showtimeChoice;
+    private boolean confirmPressed = false;
+    private int choice = -1;
+    private int theatreChoice = -1;
+    private int showtimeChoice = -1;
+
+    private String firstDate;
+    private String firstTime;
+    private String secondDate;
+    private String secondTime;
+
+    private String fullname;
+    private String email;
+    private String cardnumber;
+    private String CVV;
+    private String expiryDate;
 
     private HashMap<Integer, String> idNameMap = new HashMap<>();
     private HashMap<Integer, String> theatreNameMap = new HashMap<>();
+    private HashMap<Integer, String> showtimeChoiceMap = new HashMap<>();
 
     public SelectionForm(boolean isRegisteredUser){
 
@@ -68,6 +93,9 @@ public class SelectionForm extends JFrame {
 
         if (isRegistered){
             System.out.println("Registered User joined");
+            optionsTabbedPane.remove(4);
+
+            //IF IS REGISTERED, UPDATE FULLNAME, CARD NUM, etc values here
         } else {
             System.out.println("Unregistered User Joined");
         }
@@ -148,6 +176,8 @@ public class SelectionForm extends JFrame {
                     setSummaryLengthInfo(choice);
 
                     setShowtimeInfo(choice);
+
+                    setPaymentInfo();
                 }
 
                 if (e.getSource().equals(dragonBallRadioButton)){
@@ -163,6 +193,8 @@ public class SelectionForm extends JFrame {
                     setSummaryLengthInfo(choice);
 
                     setShowtimeInfo(choice);
+
+                    setPaymentInfo();
                 }
 
                 if (e.getSource().equals(theDarkKnightRadioButton)){
@@ -178,6 +210,8 @@ public class SelectionForm extends JFrame {
                     setSummaryLengthInfo(choice);
 
                     setShowtimeInfo(choice);
+
+                    setPaymentInfo();
                 }
 
                 if (e.getSource().equals(interstellarRadioButton)){
@@ -193,6 +227,8 @@ public class SelectionForm extends JFrame {
                     setSummaryLengthInfo(choice);
 
                     setShowtimeInfo(choice);
+
+                    setPaymentInfo();
                 }
 
 
@@ -209,6 +245,8 @@ public class SelectionForm extends JFrame {
                     setSummaryLengthInfo(choice);
 
                     setShowtimeInfo(choice);
+
+                    setPaymentInfo();
                 }
 
 
@@ -225,6 +263,8 @@ public class SelectionForm extends JFrame {
                     setSummaryLengthInfo(choice);
 
                     setShowtimeInfo(choice);
+
+                    setPaymentInfo();
                 }
 
 
@@ -241,6 +281,8 @@ public class SelectionForm extends JFrame {
                     setSummaryLengthInfo(choice);
 
                     setShowtimeInfo(choice);
+
+                    setPaymentInfo();
                 }
 
 
@@ -257,6 +299,8 @@ public class SelectionForm extends JFrame {
                     setSummaryLengthInfo(choice);
 
                     setShowtimeInfo(choice);
+
+                    setPaymentInfo();
                 }
 
 
@@ -273,6 +317,8 @@ public class SelectionForm extends JFrame {
                     setSummaryLengthInfo(choice);
 
                     setShowtimeInfo(choice);
+
+                    setPaymentInfo();
                 }
 
 
@@ -289,6 +335,8 @@ public class SelectionForm extends JFrame {
                     setSummaryLengthInfo(choice);
 
                     setShowtimeInfo(choice);
+
+                    setPaymentInfo();
                 }
 
             }
@@ -314,24 +362,29 @@ public class SelectionForm extends JFrame {
                     theatreNameMap.put(theatreChoice, "Landmark Cinemas");
 
                     setTheatreInfo(theatreChoice);
+                    setPaymentInfo();
+
                 }
                 if (e.getSource().equals(theatreSelect2)){
                     theatreChoice = 2;
                     theatreNameMap.put(theatreChoice, "Cineplex Cinemas");
 
                     setTheatreInfo(theatreChoice);
+                    setPaymentInfo();
                 }
                 if (e.getSource().equals(theatreSelect3)){
                     theatreChoice = 3;
                     theatreNameMap.put(theatreChoice, "SilverCity Cinemas");
 
                     setTheatreInfo(theatreChoice);
+                    setPaymentInfo();
                 }
                 if (e.getSource().equals(theatreSelect4)){
                     theatreChoice = 4;
                     theatreNameMap.put(theatreChoice, "Globe Cinemas");
 
                     setTheatreInfo(theatreChoice);
+                    setPaymentInfo();
                 }
             }
         };
@@ -345,8 +398,12 @@ public class SelectionForm extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource().equals(timeSelect1)){
                     showtimeChoice = 1;
+                    showtimeChoiceMap.put(showtimeChoice, firstDate + " " + firstTime);
+                    setPaymentInfo();
                 } else {
                     showtimeChoice = 2;
+                    showtimeChoiceMap.put(showtimeChoice, secondDate + " " + secondTime);
+                    setPaymentInfo();
                 }
             }
         };
@@ -354,13 +411,52 @@ public class SelectionForm extends JFrame {
         timeSelect1.addActionListener(listener2);
         timeSelect2.addActionListener(listener2);
 
-        SeatSelect seatSelect = new SeatSelect();
+        seatSelect = new SeatSelect();
 
         GridBagConstraints gbc = new GridBagConstraints();
         seatsGridPanel.add(seatSelect.mainLabel);
         seatsGridPanel.add(seatSelect.gridLayout);
         seatsGridPanel.add(seatSelect.confirm);
         seatsGridPanel.add(seatSelect.reset);
+
+        ActionListener listener3 = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                if (e.getSource().equals(finalConfirmBtn)){
+                    confirmPressed = true;
+
+                    if (!isRegistered){
+                        fullname = tfName.getText();
+                        email = tfEmail.getText();
+                        cardnumber = tfCardnum.getText();
+                        CVV = tfCVV.getText();
+                        expiryDate = tfExpiryDate.getText();
+                    }
+
+                    if (fullname.equals("") || email.equals("") || cardnumber.equals("") || CVV.equals("") || expiryDate.equals("")
+                    || cardnumber.length() != 16 || CVV.length() != 3 || !expiryDate.contains("/") || choice == -1
+                            || theatreChoice == -1 || showtimeChoice == -1){
+                        paymentSuccessMessage.setText("One or more fields are missing or invalid!");
+                    } else {
+                        paymentSuccessMessage.setText("Payment Processed. Enjoy your movie!");
+                        //ADD EMAIL SENDING LOGIC HERE / UPDATE ANY DBS ETC.
+                    }
+                }
+
+                if (e.getSource().equals(sendGenReceiptBtn)){
+
+                    if (!confirmPressed){
+                        paymentSuccessMessage.setText("Please confirm a booking!");
+                    } else {
+                        //ADD RECEIPT AND PRINTING LOGIC
+                        paymentSuccessMessage.setText("Printing ticket and sending email!");
+                    }
+                }
+            }
+        };
+        finalConfirmBtn.addActionListener(listener3);
+        sendGenReceiptBtn.addActionListener(listener3);
     }
 
 
@@ -394,10 +490,10 @@ public class SelectionForm extends JFrame {
         ShowtimesController showtimeController = new ShowtimesController();
         String[] showtimeInfo = showtimeController.getShowtimeInfo(choice);
 
-        String firstDate = showtimeInfo[0];
-        String firstTime = showtimeInfo[1];
-        String secondDate = showtimeInfo[2];
-        String secondTime = showtimeInfo[3];
+        firstDate = showtimeInfo[0];
+        firstTime = showtimeInfo[1];
+        secondDate = showtimeInfo[2];
+        secondTime = showtimeInfo[3];
 
         timeLabel1.setText("Time: " + firstTime);
         timeLabel2.setText("Time: " + secondTime);
@@ -411,5 +507,11 @@ public class SelectionForm extends JFrame {
     public void setTheatreInfo(int choice){
         theatreSelected1.setText("Theatre: " + theatreNameMap.get(choice));
         theatreSelected2.setText("Theatre: " + theatreNameMap.get(choice));
+    }
+
+    public void setPaymentInfo(){
+        finalSelectedMovie.setText("Movie: " + idNameMap.get(choice));
+        finalSelectedTheatre.setText("Theatre: " + theatreNameMap.get(theatreChoice));
+        finalSelectedShowtime.setText("Showtime: " + showtimeChoiceMap.get(showtimeChoice));
     }
 }
