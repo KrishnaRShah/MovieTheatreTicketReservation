@@ -76,7 +76,7 @@ public class SelectionForm extends JFrame {
         setSize(1050, 600);
         setResizable(false);
         setTitle("Book A Ticket");
-
+        seatsGridPanel.setLayout(null);
         ImageIcon temp = new ImageIcon("MovieTheatreTicketReservation/src/view/images/blackpanther.jpg");
         ImageIcon icon = scaleImage(temp, 200, 300);
         icon.getImage().flush();
@@ -353,6 +353,14 @@ public class SelectionForm extends JFrame {
 
         timeSelect1.addActionListener(listener2);
         timeSelect2.addActionListener(listener2);
+
+        SeatSelect seatSelect = new SeatSelect();
+
+        GridBagConstraints gbc = new GridBagConstraints();
+        seatsGridPanel.add(seatSelect.mainLabel);
+        seatsGridPanel.add(seatSelect.gridLayout);
+        seatsGridPanel.add(seatSelect.confirm);
+        seatsGridPanel.add(seatSelect.reset);
     }
 
 
