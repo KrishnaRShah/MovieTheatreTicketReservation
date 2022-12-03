@@ -1,15 +1,17 @@
 package view;
 
 import controller.SearchMovieController;
+import controller.ShowtimesController;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 
 public class SelectionForm extends JFrame {
     private JPanel selectionPanel;
-    private JTabbedPane tabbedPane1;
+    private JTabbedPane earlyAnnouncementTab;
     private JLabel labelMovies;
     private JRadioButton blackPantherRadioButton;
     private JRadioButton dragonBallRadioButton;
@@ -34,17 +36,47 @@ public class SelectionForm extends JFrame {
     private JLabel theatreImage2;
     private JLabel theatreImage3;
     private JLabel theatreImage4;
-    private JButton testbutton13Button;
+    private JPanel showtimePanel1;
+    private JPanel showtimePanel2;
+    private JRadioButton timeSelect1;
+    private JRadioButton timeSelect2;
+    private JLabel selectedLabel2;
+    private JLabel timeLabel2;
+    private JLabel dateLabel1;
+    private JLabel timeLabel1;
+    private JLabel selectedLabel;
+    private JLabel dateLabel2;
+    private JLabel finalSelectedMovie;
+    private JLabel finalSelectedTheatre;
+    private JLabel finalSelectedShowtime;
+    private JLabel finalSelectedSeat;
+    private JLabel theatreSelected1;
+    private JLabel theatreSelected2;
+    private JPanel earlyAnnouncementsPanel;
 
+    private boolean isRegistered;
     private int choice;
     private int theatreChoice;
+    private int showtimeChoice;
 
-    public SelectionForm(){
+    private HashMap<Integer, String> idNameMap = new HashMap<>();
+    private HashMap<Integer, String> theatreNameMap = new HashMap<>();
+
+    public SelectionForm(boolean isRegisteredUser){
+
+        isRegistered = isRegisteredUser;
+
+        if (isRegistered){
+            System.out.println("Registered User joined");
+        } else {
+            System.out.println("Unregistered User Joined");
+        }
+
         setContentPane(selectionPanel);
         setSize(1050, 600);
         setResizable(false);
         setTitle("Book A Ticket");
-        seatsGridPanel.setLayout(null);
+
         ImageIcon temp = new ImageIcon("MovieTheatreTicketReservation/src/view/images/blackpanther.jpg");
         ImageIcon icon = scaleImage(temp, 200, 300);
         icon.getImage().flush();
@@ -96,6 +128,10 @@ public class SelectionForm extends JFrame {
         group2.add(theatreSelect3);
         group2.add(theatreSelect4);
 
+        ButtonGroup group3 = new ButtonGroup();
+        group3.add(timeSelect1);
+        group3.add(timeSelect2);
+
         ActionListener listener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -107,12 +143,11 @@ public class SelectionForm extends JFrame {
                     moveImageLabel.setVisible(true);
                     choice = 1;
 
-                    SearchMovieController smc = new SearchMovieController();
-                    String summary = smc.getSummary(choice);
-                    labelDescription.setText("Description: " + summary);
+                    idNameMap.put(choice, "Black Panther");
 
-                    String length = smc.getLength(choice);
-                    lengthLabel.setText("Length: " + length + " minutes");
+                    setSummaryLengthInfo(choice);
+
+                    setShowtimeInfo(choice);
                 }
 
                 if (e.getSource().equals(dragonBallRadioButton)){
@@ -123,12 +158,11 @@ public class SelectionForm extends JFrame {
                     moveImageLabel.setVisible(true);
                     choice = 2;
 
-                    SearchMovieController smc = new SearchMovieController();
-                    String summary = smc.getSummary(choice);
-                    labelDescription.setText("Description: " + summary);
+                    idNameMap.put(choice, "Dragon Ball");
 
-                    String length = smc.getLength(choice);
-                    lengthLabel.setText("Length: " + length + " minutes");
+                    setSummaryLengthInfo(choice);
+
+                    setShowtimeInfo(choice);
                 }
 
                 if (e.getSource().equals(theDarkKnightRadioButton)){
@@ -139,12 +173,11 @@ public class SelectionForm extends JFrame {
                     moveImageLabel.setVisible(true);
                     choice = 3;
 
-                    SearchMovieController smc = new SearchMovieController();
-                    String summary = smc.getSummary(choice);
-                    labelDescription.setText("Description: " + summary);
+                    idNameMap.put(choice, "The Dark Knight");
 
-                    String length = smc.getLength(choice);
-                    lengthLabel.setText("Length: " + length + " minutes");
+                    setSummaryLengthInfo(choice);
+
+                    setShowtimeInfo(choice);
                 }
 
                 if (e.getSource().equals(interstellarRadioButton)){
@@ -155,12 +188,11 @@ public class SelectionForm extends JFrame {
                     moveImageLabel.setVisible(true);
                     choice = 4;
 
-                    SearchMovieController smc = new SearchMovieController();
-                    String summary = smc.getSummary(choice);
-                    labelDescription.setText("Description: " + summary);
+                    idNameMap.put(choice, "Interstellar");
 
-                    String length = smc.getLength(choice);
-                    lengthLabel.setText("Length: " + length + " minutes");
+                    setSummaryLengthInfo(choice);
+
+                    setShowtimeInfo(choice);
                 }
 
 
@@ -172,12 +204,11 @@ public class SelectionForm extends JFrame {
                     moveImageLabel.setVisible(true);
                     choice = 5;
 
-                    SearchMovieController smc = new SearchMovieController();
-                    String summary = smc.getSummary(choice);
-                    labelDescription.setText("Description: " + summary);
+                    idNameMap.put(choice, "Jujutsu Kaisen");
 
-                    String length = smc.getLength(choice);
-                    lengthLabel.setText("Length: " + length + " minutes");
+                    setSummaryLengthInfo(choice);
+
+                    setShowtimeInfo(choice);
                 }
 
 
@@ -189,12 +220,11 @@ public class SelectionForm extends JFrame {
                     moveImageLabel.setVisible(true);
                     choice = 6;
 
-                    SearchMovieController smc = new SearchMovieController();
-                    String summary = smc.getSummary(choice);
-                    labelDescription.setText("Description: " + summary);
+                    idNameMap.put(choice, "Women is King");
 
-                    String length = smc.getLength(choice);
-                    lengthLabel.setText("Length: " + length + " minutes");
+                    setSummaryLengthInfo(choice);
+
+                    setShowtimeInfo(choice);
                 }
 
 
@@ -206,12 +236,11 @@ public class SelectionForm extends JFrame {
                     moveImageLabel.setVisible(true);
                     choice = 7;
 
-                    SearchMovieController smc = new SearchMovieController();
-                    String summary = smc.getSummary(choice);
-                    labelDescription.setText("Description: " + summary);
+                    idNameMap.put(choice, "Ant Man");
 
-                    String length = smc.getLength(choice);
-                    lengthLabel.setText("Length: " + length + " minutes");
+                    setSummaryLengthInfo(choice);
+
+                    setShowtimeInfo(choice);
                 }
 
 
@@ -223,12 +252,11 @@ public class SelectionForm extends JFrame {
                     moveImageLabel.setVisible(true);
                     choice = 8;
 
-                    SearchMovieController smc = new SearchMovieController();
-                    String summary = smc.getSummary(choice);
-                    labelDescription.setText("Description: " + summary);
+                    idNameMap.put(choice, "Demon Slayer");
 
-                    String length = smc.getLength(choice);
-                    lengthLabel.setText("Length: " + length + " minutes");
+                    setSummaryLengthInfo(choice);
+
+                    setShowtimeInfo(choice);
                 }
 
 
@@ -240,12 +268,11 @@ public class SelectionForm extends JFrame {
                     moveImageLabel.setVisible(true);
                     choice = 9;
 
-                    SearchMovieController smc = new SearchMovieController();
-                    String summary = smc.getSummary(choice);
-                    labelDescription.setText("Description: " + summary);
+                    idNameMap.put(choice, "Tarzan");
 
-                    String length = smc.getLength(choice);
-                    lengthLabel.setText("Length: " + length + " minutes");
+                    setSummaryLengthInfo(choice);
+
+                    setShowtimeInfo(choice);
                 }
 
 
@@ -257,12 +284,11 @@ public class SelectionForm extends JFrame {
                     moveImageLabel.setVisible(true);
                     choice = 10;
 
-                    SearchMovieController smc = new SearchMovieController();
-                    String summary = smc.getSummary(choice);
-                    labelDescription.setText("Description: " + summary);
+                    idNameMap.put(choice, "Tokyo Drift");
 
-                    String length = smc.getLength(choice);
-                    lengthLabel.setText("Length: " + length + " minutes");
+                    setSummaryLengthInfo(choice);
+
+                    setShowtimeInfo(choice);
                 }
 
             }
@@ -285,15 +311,27 @@ public class SelectionForm extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource().equals(theatreSelect1)){
                     theatreChoice = 1;
+                    theatreNameMap.put(theatreChoice, "Landmark Cinemas");
+
+                    setTheatreInfo(theatreChoice);
                 }
                 if (e.getSource().equals(theatreSelect2)){
                     theatreChoice = 2;
+                    theatreNameMap.put(theatreChoice, "Cineplex Cinemas");
+
+                    setTheatreInfo(theatreChoice);
                 }
                 if (e.getSource().equals(theatreSelect3)){
                     theatreChoice = 3;
+                    theatreNameMap.put(theatreChoice, "SilverCity Cinemas");
+
+                    setTheatreInfo(theatreChoice);
                 }
                 if (e.getSource().equals(theatreSelect4)){
                     theatreChoice = 4;
+                    theatreNameMap.put(theatreChoice, "Globe Cinemas");
+
+                    setTheatreInfo(theatreChoice);
                 }
             }
         };
@@ -301,20 +339,20 @@ public class SelectionForm extends JFrame {
         theatreSelect2.addActionListener(listener1);
         theatreSelect3.addActionListener(listener1);
         theatreSelect4.addActionListener(listener1);
-//
-        SeatSelect seatSelect = new SeatSelect();
 
-//        seatsGridPanel = new JPanel();
-//        JPanel tempPanel = seatSelect.getMainPanel();
-//        tempPanel.setBounds(0,0,600,600);
-//         seatsGridPanel.add(tempPanel);
-//        System.out.println(seatsGridPanel);
-//        seatsGridPanel.add(seatSelect.mainPanel);
-        GridBagConstraints gbc = new GridBagConstraints();
-        seatsGridPanel.add(seatSelect.mainLabel);
-        seatsGridPanel.add(seatSelect.gridLayout);
-        seatsGridPanel.add(seatSelect.confirm);
-        seatsGridPanel.add(seatSelect.reset);
+        ActionListener listener2 = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (e.getSource().equals(timeSelect1)){
+                    showtimeChoice = 1;
+                } else {
+                    showtimeChoice = 2;
+                }
+            }
+        };
+
+        timeSelect1.addActionListener(listener2);
+        timeSelect2.addActionListener(listener2);
     }
 
 
@@ -335,5 +373,35 @@ public class SelectionForm extends JFrame {
         return new ImageIcon(icon.getImage().getScaledInstance(nw, nh, Image.SCALE_DEFAULT));
     }
 
+    public void setSummaryLengthInfo(int choice){
+        SearchMovieController smc = new SearchMovieController();
+        String summary = smc.getSummary(choice);
+        labelDescription.setText("Description: " + summary);
 
+        String length = smc.getLength(choice);
+        lengthLabel.setText("Length: " + length + " minutes");
+    }
+
+    public void setShowtimeInfo(int choice){
+        ShowtimesController showtimeController = new ShowtimesController();
+        String[] showtimeInfo = showtimeController.getShowtimeInfo(choice);
+
+        String firstDate = showtimeInfo[0];
+        String firstTime = showtimeInfo[1];
+        String secondDate = showtimeInfo[2];
+        String secondTime = showtimeInfo[3];
+
+        timeLabel1.setText("Time: " + firstTime);
+        timeLabel2.setText("Time: " + secondTime);
+        dateLabel1.setText("Date: " + firstDate);
+        dateLabel2.setText("Date: " + secondDate);
+
+        selectedLabel.setText("Movie Selected: " + idNameMap.get(choice));
+        selectedLabel2.setText("Movie Selected: " + idNameMap.get(choice));
+    }
+
+    public void setTheatreInfo(int choice){
+        theatreSelected1.setText("Theatre: " + theatreNameMap.get(choice));
+        theatreSelected2.setText("Theatre: " + theatreNameMap.get(choice));
+    }
 }

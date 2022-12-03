@@ -49,6 +49,8 @@ public class LoginFrame extends JFrame {
 
                 if (lc.verifyUser(inUsername, inPass)){
                     successText.setText("Logging in!");
+                    SelectionForm selectionForm = new SelectionForm(true);
+                    selectionForm.setVisible(true);
                 } else {
                     successText.setText("Not Registered!");
                 }

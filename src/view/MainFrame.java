@@ -32,7 +32,7 @@ public class MainFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //OPEN MOVIES TAB HERE
-                SelectionForm selectionForm = new SelectionForm();
+                SelectionForm selectionForm = new SelectionForm(false);
                 selectionForm.setVisible(true);
             }
         });
