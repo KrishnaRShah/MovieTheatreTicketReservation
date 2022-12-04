@@ -534,7 +534,7 @@ public class SelectionForm extends JFrame {
                         System.out.println("Date of Purchase : " + dateOfPurchase);
 
                         TicketController tc = new TicketController();
-                        tc.addTicketDB(email, seatChoice, dateOfPurchase, theatreChoice, priceChoice);
+                        tc.addTicketDB(email, seatChoice, dateOfPurchase, theatreChoice, priceChoice, showtimeChoiceMap.get(showtimeChoice));
 
                         JOptionPane.showMessageDialog(null, "Payment and Ticket Processed Successfully! Enjoy your movie!");
 
