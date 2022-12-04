@@ -3,12 +3,16 @@ package view;
 import controller.RegUserInformationController;
 import controller.SearchMovieController;
 import controller.ShowtimesController;
+import controller.TicketController;
 import model.Seat;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -122,7 +126,6 @@ public class SelectionForm extends JFrame {
 
         isRegistered = isRegisteredUser;
 
-
         seatsGridPanel.setLayout(null);
         if (isRegistered){
             System.out.println("Registered User joined");
@@ -134,6 +137,7 @@ public class SelectionForm extends JFrame {
             tfExpiryDate.setVisible(false);
 
             getRegisteredUserInfo(regUserEmail);
+            email = RUEmail;
 
         } else {
             System.out.println("Unregistered User Joined");
@@ -504,13 +508,13 @@ public class SelectionForm extends JFrame {
                 if (e.getSource().equals(finalConfirmBtn)){
 
 
-//                    if (!isRegistered){
+                    if (!isRegistered){
                         fullname = tfName.getText();
                         email = tfEmail.getText();
                         cardnumber = tfCardnum.getText();
                         CVV = tfCVV.getText();
                         expiryDate = tfExpiryDate.getText();
-//                    }
+                    }
 
                     if (fullname.equals("") || email.equals("") || cardnumber.equals("") || CVV.equals("") || expiryDate.equals("")
                     || cardnumber.length() != 16 || CVV.length() != 3 || !expiryDate.contains("/") || choice == -1
@@ -519,11 +523,23 @@ public class SelectionForm extends JFrame {
                         confirmPressed = false;
                     } else {
                         confirmPressed = true;
-                        paymentSuccessMessage.setText("Payment Processed. Enjoy your movie!");
+                        paymentSuccessMessage.setText(" ");
                         seatSelect.sc.updateSeat(String.valueOf(seatChoice), "0");
                         seatSelect.confirmSeat = true;
-                        System.out.println(ticketNumber);
-                        ticketNumber++;
+
+                        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+                        LocalDateTime today = LocalDateTime.now();
+                        String dateOfPurchase = today.format(dtf).toString().substring(0, 10);
+
+                        System.out.println("Date of Purchase : " + dateOfPurchase);
+
+                        TicketController tc = new TicketController();
+                        tc.addTicketDB(email, seatChoice, dateOfPurchase, theatreChoice, priceChoice);
+
+                        JOptionPane.showMessageDialog(null, "Payment and Ticket Processed Successfully! Enjoy your movie!");
+
+//                        System.out.println(ticketNumber);
+//                        ticketNumber++;
                         //ADD EMAIL SENDING LOGIC HERE / UPDATE ANY DBS ETC.
                     }
                 }
@@ -632,6 +648,11 @@ public class SelectionForm extends JFrame {
         payCardLabel.setText("Card Number: " + userInfo[1]);
         payCVVLabel.setText("CVV: " + userInfo[2]);
         payExpiryLabel.setText("Expiry Date: " + userInfo[3]);
+
+        fullname = userInfo[0];
+        cardnumber = userInfo[1];
+        CVV = userInfo[2];
+        expiryDate = userInfo[3];
 
     }
 

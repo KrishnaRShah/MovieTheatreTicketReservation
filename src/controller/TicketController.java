@@ -19,4 +19,9 @@ public class TicketController {
     public String getPurchasedDate(int ticketID){
         return "";
     }
+
+    public void addTicketDB(String email, int seatNumber, String dateOfPurchase, int theatreID, String price){
+        String query = "INSERT INTO tickets (user_email, seat_id, purchased_date, theatre_id, ticket_price) VALUES (?,?,?,?,?)";
+        DB.execute(query, email, seatNumber, dateOfPurchase, theatreID, price);
+    }
 }

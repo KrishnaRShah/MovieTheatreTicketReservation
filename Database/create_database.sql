@@ -287,9 +287,11 @@ DROP TABLE IF EXISTS `tickets`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tickets` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `user_id` int NOT NULL,
+  `user_email` varchar(128) NOT NULL,
   `seat_id` int NOT NULL,
   `purchased_date` date NOT NULL,
+  `theatre_id` int NOT NULL,
+  `ticket_price` varchar(5) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
