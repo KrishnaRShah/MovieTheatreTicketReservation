@@ -49,12 +49,10 @@ public class LoginFrame extends JFrame {
 
                 if (lc.verifyUser(inUsername, inPass)){
                     successText.setText("Logging in!");
-                    SelectionForm selectionForm = new SelectionForm(true);
+
+                    SelectionForm selectionForm = new SelectionForm(true, inUsername);
                     selectionForm.setVisible(true);
-//                    try {
-//                        Thread.sleep(5000);
-//                    } catch (InterruptedException ex) {
-//                    }
+
                     dispose();
                 } else {
                     successText.setText("Not Registered!");

@@ -103,5 +103,43 @@ public class RegUserInformationController {
         String query = "DELETE FROM users WHERE email = ?";
         DB.execute(query, email);
     }
+
+    public String[] getInfoByEmail(String email) {
+        String nameQuery = "SELECT * FROM users WHERE email = ?";
+        ResultSet res = DB.query(nameQuery, email);
+        String returnedName = "";
+        try {
+            if (res.next()){
+                returnedName = res.getString("name");
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+
+        String cardQuery = "SELECT * FROM cards WHERE name_on_card = ?";
+        ResultSet cardRes = DB.query(cardQuery, returnedName);
+
+        String retCardNum = "";
+        String retCVV = "";
+        String retExpiryDate = "";
+
+        try {
+            if (cardRes.next()){
+                retCardNum = cardRes.getString("card_number");
+                retCVV = cardRes.getString("cvv");
+                retExpiryDate = cardRes.getString("expiry_date");
+            }
+        } catch (SQLException e1){
+            e1.printStackTrace();
+        }
+
+        String[] userInfo = new String[4];
+        userInfo[0] = returnedName;
+        userInfo[1] = retCardNum;
+        userInfo[2] = retCVV;
+        userInfo[3] = retExpiryDate;
+
+        return userInfo;
+    }
     
 }

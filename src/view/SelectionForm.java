@@ -1,5 +1,6 @@
 package view;
 
+import controller.RegUserInformationController;
 import controller.SearchMovieController;
 import controller.ShowtimesController;
 
@@ -52,12 +53,7 @@ public class SelectionForm extends JFrame {
     private JLabel finalSelectedSeat;
     private JLabel theatreSelected1;
     private JLabel theatreSelected2;
-    private JPanel paymentPanel;
-    private JTextField tfName;
-    private JTextField tfEmail;
-    private JTextField tfCardnum;
-    private JTextField tfCVV;
-    private JTextField tfExpiryDate;
+
     private JButton finalConfirmBtn;
     private JButton sendGenReceiptBtn;
     private JLabel paymentSuccessMessage;
@@ -75,6 +71,18 @@ public class SelectionForm extends JFrame {
     private JLabel earlyMovie2Desc;
     private JLabel earlyMovie2Length;
     private JRadioButton earlyChoice2;
+    private JPanel guestPaymentPanel;
+    private JLabel payNameLabel;
+    private JLabel payEmailLabel;
+    private JLabel payCardLabel;
+    private JLabel payCVVLabel;
+    private JLabel payExpiryLabel;
+
+    private JTextField tfName;
+    private JTextField tfEmail;
+    private JTextField tfCardnum;
+    private JTextField tfCVV;
+    private JTextField tfExpiryDate;
 
     private SeatSelect seatSelect;
 
@@ -98,20 +106,29 @@ public class SelectionForm extends JFrame {
     private String CVV;
     private String expiryDate;
 
+    private String regUserEmail;
+
     private int ticketNumber = 1;
 
     private HashMap<Integer, String> idNameMap = new HashMap<>();
     private HashMap<Integer, String> theatreNameMap = new HashMap<>();
     private HashMap<Integer, String> showtimeChoiceMap = new HashMap<>();
 
-    public SelectionForm(boolean isRegisteredUser){
+    public SelectionForm(boolean isRegisteredUser, String RUEmail){
 
         isRegistered = isRegisteredUser;
 
         if (isRegistered){
             System.out.println("Registered User joined");
-//            optionsTabbedPane.remove(4);
-            //IF IS REGISTERED, UPDATE FULLNAME, CARD NUM, etc values here
+            regUserEmail = RUEmail;
+            tfName.setVisible(false);
+            tfEmail.setVisible(false);
+            tfCardnum.setVisible(false);
+            tfCVV.setVisible(false);
+            tfExpiryDate.setVisible(false);
+
+            getRegisteredUserInfo(regUserEmail);
+
         } else {
             System.out.println("Unregistered User Joined");
             optionsTabbedPane.remove(0);
@@ -600,5 +617,17 @@ public class SelectionForm extends JFrame {
         finalSelectedShowtime.setText("Showtime: " + showtimeChoiceMap.get(showtimeChoice));
         finalSelectedSeat.setText("Seat: " + seatSelect.getSeat().getSeatId());
         finalFeeLabel.setText("Price: " + seatSelect.getPrice());
+    }
+
+    public void getRegisteredUserInfo(String email){
+        RegUserInformationController regUserInfoControl = new RegUserInformationController();
+        String[] userInfo = regUserInfoControl.getInfoByEmail(email);
+
+        payNameLabel.setText("Name: " + userInfo[0]);
+        payEmailLabel.setText("Email: " + email);
+        payCardLabel.setText("Card Number: " + userInfo[1]);
+        payCVVLabel.setText("CVV: " + userInfo[2]);
+        payExpiryLabel.setText("Expiry Date: " + userInfo[3]);
+
     }
 }

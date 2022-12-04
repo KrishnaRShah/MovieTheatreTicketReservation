@@ -1093,7 +1093,7 @@
               </grid>
             </children>
           </grid>
-          <grid id="3126f" binding="paymentPanel" layout-manager="GridLayoutManager" row-count="2" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+          <grid id="3126f" binding="guestPaymentPanel" layout-manager="GridLayoutManager" row-count="2" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
               <tabbedpane title="Payment"/>
@@ -1168,12 +1168,12 @@
                       <text value="Seat:"/>
                     </properties>
                   </component>
-                  <component id="e018a" class="javax.swing.JLabel">
+                  <component id="e018a" class="javax.swing.JLabel" binding="payNameLabel">
                     <constraints>
                       <grid row="10" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <font name="Arial Black" size="14" style="0"/>
+                      <font name="Arial Black" size="18" style="0"/>
                       <foreground color="-16314349"/>
                       <text value="Name"/>
                     </properties>
@@ -1188,12 +1188,12 @@
                       <background color="-3092272"/>
                     </properties>
                   </component>
-                  <component id="d848e" class="javax.swing.JLabel">
+                  <component id="d848e" class="javax.swing.JLabel" binding="payEmailLabel">
                     <constraints>
                       <grid row="12" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <font name="Arial Black" size="14" style="0"/>
+                      <font name="Arial Black" size="18" style="0"/>
                       <foreground color="-16314349"/>
                       <text value="Email"/>
                     </properties>
@@ -1208,22 +1208,22 @@
                       <background color="-3092272"/>
                     </properties>
                   </component>
-                  <component id="7116b" class="javax.swing.JLabel">
+                  <component id="7116b" class="javax.swing.JLabel" binding="payCardLabel">
                     <constraints>
                       <grid row="14" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <font name="Arial Black" size="14" style="0"/>
+                      <font name="Arial Black" size="18" style="0"/>
                       <foreground color="-16314349"/>
                       <text value="Card Number"/>
                     </properties>
                   </component>
-                  <component id="940a1" class="javax.swing.JLabel">
+                  <component id="940a1" class="javax.swing.JLabel" binding="payCVVLabel">
                     <constraints>
                       <grid row="16" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <font name="Arial Black" size="14" style="0"/>
+                      <font name="Arial Black" size="18" style="0"/>
                       <foreground color="-16314349"/>
                       <text value="CVV"/>
                     </properties>
@@ -1238,12 +1238,12 @@
                       <background color="-3092272"/>
                     </properties>
                   </component>
-                  <component id="7fdcf" class="javax.swing.JLabel">
+                  <component id="7fdcf" class="javax.swing.JLabel" binding="payExpiryLabel">
                     <constraints>
                       <grid row="18" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <font name="Arial Black" size="14" style="0"/>
+                      <font name="Arial Black" size="18" style="0"/>
                       <foreground color="-16314349"/>
                       <text value="Expiry Date"/>
                     </properties>

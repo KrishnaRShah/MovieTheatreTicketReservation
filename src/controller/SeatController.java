@@ -36,7 +36,7 @@ public class SeatController {
         return resVerified;
     }
 
-    public  String ticketPrice(String id){
+    public String ticketPrice(String id){
         //SQL query
         String query = "SELECT * FROM seats";
         ResultSet results = DB.query(query);
