@@ -319,6 +319,7 @@ CREATE TABLE `users` (
   `registered` tinyint(1) DEFAULT '0',
   `password` varchar(16) DEFAULT NULL,
   `name` varchar(32) DEFAULT NULL,
+  `annualFeeDue` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -329,7 +330,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'user1@example.com',1,'user1','User One'),(2,'user2@example.com',0,'user2','User Two'),(3,'user3@example.com',1,'user3','User Three'),(4,'user4@example.com',0,'user4','User Four'),(5,'user5@example.com',1,'user5','User Five'),(6,'admin@example.com',3,'admin123','Admin User');
+INSERT INTO `users` VALUES (1,'user1@example.com',1,'user1','User One',0),(2,'user2@example.com',0,'user2','User Two',0),(3,'user3@example.com',1,'user3','User Three',1),(4,'user4@example.com',0,'user4','User Four',0),(5,'user5@example.com',1,'user5','User Five',0),(6,'admin@example.com',3,'admin123','Admin User',0),(7,'user7@example.com',1,'user7','User Seven',1),(8,'user8@example.com',1,'user8','User Eight',1);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

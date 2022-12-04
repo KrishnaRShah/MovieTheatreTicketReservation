@@ -141,5 +141,28 @@ public class RegUserInformationController {
 
         return userInfo;
     }
+
+    public boolean needsToPayFee(String email){
+        String query = "SELECT * FROM users WHERE email = ?";
+        ResultSet results = DB.query(query, email);
+        boolean required = false;
+        try {
+            if (results.next()){
+                int temp = results.getInt("annualFeeDue");
+                if (temp == 1){
+                    required = true;
+                }
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+
+        return required;
+    }
+
+    public void payAnnualFee(String email){
+        String query = "UPDATE users SET annualFeeDue = ? WHERE email = ?";
+        DB.execute(query, 0, email);
+    }
     
 }

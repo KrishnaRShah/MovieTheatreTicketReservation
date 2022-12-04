@@ -1,6 +1,7 @@
 package view;
 
 import controller.LoginController;
+import controller.RegUserInformationController;
 
 import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
@@ -50,10 +51,25 @@ public class LoginFrame extends JFrame {
                 if (lc.verifyUser(inUsername, inPass)){
                     successText.setText("Logging in!");
 
-                    SelectionForm selectionForm = new SelectionForm(true, inUsername);
-                    selectionForm.setVisible(true);
+                    RegUserInformationController regInfoController = new RegUserInformationController();
+                    boolean feeRequired = regInfoController.needsToPayFee(inUsername);
 
-                    dispose();
+                    if (feeRequired){
+                        int result = JOptionPane.showConfirmDialog(null, "Annual Fee of $20.00 is required to proceed. Press YES to pay!");
+                        if (result == JOptionPane.YES_OPTION){
+                            SelectionForm selectionForm = new SelectionForm(true, inUsername);
+                            selectionForm.setVisible(true);
+                            regInfoController.payAnnualFee(inUsername);
+                            dispose();
+                        } else {
+                            JOptionPane.getRootFrame().dispose();
+                        }
+                    } else {
+                        SelectionForm selectionForm = new SelectionForm(true, inUsername);
+                        selectionForm.setVisible(true);
+                        dispose();
+                    }
+
                 } else {
                     successText.setText("Not Registered!");
                 }
