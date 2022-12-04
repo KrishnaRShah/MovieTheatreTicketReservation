@@ -3,11 +3,13 @@ package view;
 import controller.RegUserInformationController;
 import controller.SearchMovieController;
 import controller.ShowtimesController;
+import model.Seat;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class SelectionForm extends JFrame {
@@ -109,15 +111,19 @@ public class SelectionForm extends JFrame {
     private String regUserEmail;
 
     private int ticketNumber = 1;
-
+    private String seatQuery = "seats";
     private HashMap<Integer, String> idNameMap = new HashMap<>();
     private HashMap<Integer, String> theatreNameMap = new HashMap<>();
     private HashMap<Integer, String> showtimeChoiceMap = new HashMap<>();
+
+    private ArrayList<SeatSelect> listofSeatMaps;
 
     public SelectionForm(boolean isRegisteredUser, String RUEmail){
 
         isRegistered = isRegisteredUser;
 
+
+        seatsGridPanel.setLayout(null);
         if (isRegistered){
             System.out.println("Registered User joined");
             regUserEmail = RUEmail;
@@ -424,7 +430,7 @@ public class SelectionForm extends JFrame {
 
                     setTheatreInfo(theatreChoice);
                     setPaymentInfo();
-
+                    updateSeatMap();
                 }
                 if (e.getSource().equals(theatreSelect2)){
                     theatreChoice = 2;
@@ -432,6 +438,7 @@ public class SelectionForm extends JFrame {
 
                     setTheatreInfo(theatreChoice);
                     setPaymentInfo();
+                    updateSeatMap();
                 }
                 if (e.getSource().equals(theatreSelect3)){
                     theatreChoice = 3;
@@ -439,6 +446,7 @@ public class SelectionForm extends JFrame {
 
                     setTheatreInfo(theatreChoice);
                     setPaymentInfo();
+                    updateSeatMap();
                 }
                 if (e.getSource().equals(theatreSelect4)){
                     theatreChoice = 4;
@@ -446,6 +454,7 @@ public class SelectionForm extends JFrame {
 
                     setTheatreInfo(theatreChoice);
                     setPaymentInfo();
+                    updateSeatMap();
                 }
             }
         };
@@ -472,26 +481,21 @@ public class SelectionForm extends JFrame {
         timeSelect1.addActionListener(listener2);
         timeSelect2.addActionListener(listener2);
 
-        seatSelect = new SeatSelect();
+        listofSeatMaps = new ArrayList<SeatSelect>(5);
+        for(int i = 0; i < 5; i++){
+            if(i > 0){
+                seatQuery = "seats" + i;
+            }
+//            final SeatSelect seatTemp = new SeatSelect(seatQuery);
+            listofSeatMaps.add(i, new SeatSelect(seatQuery));
+        }
 
-        GridBagConstraints gbc = new GridBagConstraints();
+        //create intial layout
+        updateSeatMap();
         seatsGridPanel.add(seatSelect.mainLabel);
         seatsGridPanel.add(seatSelect.gridLayout);
         seatsGridPanel.add(seatSelect.reset);
 
-        //adding confirm
-        String confirmString = "Set Seat";
-        seatSelect.confirm = new JButton(confirmString);
-        seatSelect.confirm.setBounds(443, 420, 150, 30);
-        seatSelect.confirm.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                setPaymentInfo();
-                priceChoice = seatSelect.getPrice();
-                seatChoice = seatSelect.getSeat().getSeatNumber();
-            }
-        });
-        seatsGridPanel.add(seatSelect.confirm);
 
         ActionListener listener3 = new ActionListener() {
             @Override
@@ -629,5 +633,36 @@ public class SelectionForm extends JFrame {
         payCVVLabel.setText("CVV: " + userInfo[2]);
         payExpiryLabel.setText("Expiry Date: " + userInfo[3]);
 
+    }
+
+    public void updateSeatMap(){
+            if(theatreChoice == -1){
+                seatSelect = listofSeatMaps.get(0);
+            }else {
+                seatSelect = listofSeatMaps.get(theatreChoice);
+            }
+            seatsGridPanel.removeAll();
+            seatsGridPanel.add(seatSelect.mainLabel);
+            seatsGridPanel.add(seatSelect.gridLayout);
+            seatsGridPanel.add(seatSelect.reset);
+        String confirmString = "Set Seat";
+        SeatSelect.confirm = new JButton(confirmString);
+        SeatSelect.confirm.setBounds(443, 420, 150, 30);
+
+        SeatSelect.confirm.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(e.getSource().equals(SeatSelect.confirm)) {
+//                    seatSelect = listofSeatMaps.get(theatreChoice);
+                    System.out.println(seatSelect.getSeat().getSeatId());
+                    priceChoice = seatSelect.getPrice();
+                    seatChoice = seatSelect.getSeat().getSeatNumber();
+                    setPaymentInfo();
+                    System.out.println("LOL");
+                    System.out.println(theatreChoice);
+                }
+            }
+        });
+        seatsGridPanel.add(SeatSelect.confirm);
     }
 }

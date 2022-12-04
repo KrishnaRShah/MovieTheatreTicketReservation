@@ -16,7 +16,7 @@ public class SeatSelect implements ActionListener {
     private int rows = 6;
     private int columns = 8;
     private Icon res = UIManager.getIcon("OptionPane.errorIcon");
-    JButton confirm;
+    static JButton confirm;
     JButton reset;
 
 
@@ -31,14 +31,17 @@ public class SeatSelect implements ActionListener {
     //create list of lists to keep track of [ID,RESEREVED,PRICE?]
 
     AbstractButton abstractButtom;
-    Seat currentSelected;
+    private Seat currentSelected;
     SeatController sc;
     private Seat seat = null;
+    private  String seatChoice;
 
-    public SeatSelect( ) {
 
+    public SeatSelect(String seatChoice) {
+        //create seat for Queery
+        this.seatChoice = seatChoice;
         currentSelected = new Seat(0,"0", " ");
-        sc = new SeatController();
+        sc = new SeatController(seatChoice);
         int size = (rows * columns) + 1;
 
 
@@ -68,11 +71,9 @@ public class SeatSelect implements ActionListener {
 
         gridLayout = new JPanel(new GridLayout(this.columns, this.rows));
         gridLayout.setBounds(188, 55, 650, 350);
+
+        //create layout
         int charNum = 65;
-
-        //create list
-        group = new ButtonGroup();
-
         int idNumTemp = 1;
         for(int column = 0; column < this.columns; ++column) {
             for(int row = 0; row < this.rows; ++row) {
@@ -108,6 +109,7 @@ public class SeatSelect implements ActionListener {
                                 Seat tempSeat = seatList.get(idNum);
                                 tempSeat.setSeatReserved("0");
                                 currentSelected = tempSeat;
+                                System.out.println(currentSelected.getSeatId());
                                 seatList.set(idNum, tempSeat);
                                 clearButton(idNum);
                                 System.out.println("INDEX " + idNum);
@@ -148,17 +150,9 @@ public class SeatSelect implements ActionListener {
 
     }
 
-    public void actionPerformed(ActionEvent var1) {
-//        if (var1.getSource() == this.confirm) {
-//            this.confirmSeat = true;
-//            System.out.println(currentSelected.getSeatNumber());
-//            for(int i = 1; i < seatList.size(); i++){
-//                if(seatList.get(i).isReserved().equals("0")){
-//                    sc.updateSeat(String.valueOf(i), "0");
-//                }
-//            }
-//        }
 
+
+    public void actionPerformed(ActionEvent var1) {
         if (var1.getSource() == this.reset) {
             this.confirmSeat = false;
             for(int i = 1; i < seatList.size(); i++){
@@ -204,15 +198,16 @@ public class SeatSelect implements ActionListener {
         String temp = sc.ticketPrice(String.valueOf(currentSelected.getSeatNumber()));
         return  temp;
     }
-    public JPanel getMainPanel(){
-        return mainPanel;
-    }
 
     public Seat getSeat(){
         return currentSelected;
     }
 
-//    public static void main(String[] args) {
+    public String getSeatChoice() {
+        return seatChoice;
+    }
+
+    //    public static void main(String[] args) {
 //        EventQueue.invokeLater(new Runnable() {
 //            public void run() {
 //                new SeatSelect();

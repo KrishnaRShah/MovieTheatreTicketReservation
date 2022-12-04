@@ -5,19 +5,24 @@ import java.sql.SQLException;
 
 public class SeatController {
     private DBController DB;
+    private String seatQuery;
 
-    public SeatController(){
+    public SeatController(String seatChoice){
+
         DB = DBController.getInstance();
+        seatQuery = seatChoice;
     }
 
 
     public void updateSeat(String id, String reserved){
-        DB.execute("UPDATE seats SET reserved = ? WHERE id = ?", reserved, id);
+        String query = "UPDATE " + seatQuery + " SET reserved = ? WHERE id = ?";
+        DB.execute(query, reserved, id);
     }
 
     public String reserveSeat(String id){
         //SQL query
-        String query = "SELECT * FROM seats";
+//        String query = "SELECT * FROM seats";
+        String query = "SELECT * FROM " + seatQuery;
         ResultSet results = DB.query(query);
         String resVerified = " ";
         try {
@@ -38,7 +43,7 @@ public class SeatController {
 
     public String ticketPrice(String id){
         //SQL query
-        String query = "SELECT * FROM seats";
+        String query = "SELECT * FROM " + seatQuery;
         ResultSet results = DB.query(query);
         String resPrice = " ";
         try {
