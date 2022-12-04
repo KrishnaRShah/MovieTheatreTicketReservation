@@ -481,7 +481,7 @@ public class SelectionForm extends JFrame {
             public void actionPerformed(ActionEvent e) {
 
                 if (e.getSource().equals(finalConfirmBtn)){
-                    confirmPressed = true;
+
 
 //                    if (!isRegistered){
                         fullname = tfName.getText();
@@ -495,7 +495,9 @@ public class SelectionForm extends JFrame {
                     || cardnumber.length() != 16 || CVV.length() != 3 || !expiryDate.contains("/") || choice == -1
                             || theatreChoice == -1 || showtimeChoice == -1 || seatChoice == -1 || priceChoice.equals("")){
                         paymentSuccessMessage.setText("One or more fields are missing or invalid!");
+                        confirmPressed = false;
                     } else {
+                        confirmPressed = true;
                         paymentSuccessMessage.setText("Payment Processed. Enjoy your movie!");
                         seatSelect.sc.updateSeat(String.valueOf(seatChoice), "0");
                         seatSelect.confirmSeat = true;

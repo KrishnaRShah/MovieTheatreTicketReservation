@@ -11,7 +11,7 @@ public class SeatController {
     }
 
 
-    public  void updateSeat(String id, String reserved){
+    public void updateSeat(String id, String reserved){
         DB.execute("UPDATE seats SET reserved = ? WHERE id = ?", reserved, id);
     }
 

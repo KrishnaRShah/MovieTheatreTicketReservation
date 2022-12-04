@@ -32,4 +32,28 @@ public class LoginController {
 
         return verified;
     }
+
+    public boolean verifyAdmin(String username, String password){
+        //SQL query
+        String query = "SELECT * FROM users";
+        ResultSet results = DB.query(query);
+        boolean verified = false;
+        try {
+            while (results.next()){
+                String resUsername = results.getString("email");
+                String resPass = results.getString("password");
+                int registered = results.getInt("registered");
+
+                if (username.equals(resUsername) && password.equals(resPass) && registered == 3){
+                    verified = true;
+                    break;
+                }
+            }
+
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+
+        return verified;
+    }
 }

@@ -69,5 +69,39 @@ public class RegUserInformationController {
             return true;
         }
     }
+
+    public void registerAdmin(String pass, String email, String name){
+
+        String searchQuery = "SELECT * FROM users";
+        ResultSet results = DB.query(searchQuery);
+        boolean temp = false;
+        try {
+            while (results.next()){
+                String resEmail = results.getString("email");
+
+                //found a duplicate
+                if (email.equals(resEmail)){
+                    temp = true;
+                    break;
+                }
+            }
+
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+
+        if (temp){
+            return;
+        } else {
+            String query = "INSERT INTO users (email, registered, password, name) VALUES (?,?,?,?)";
+            DB.execute(query, email, 3, pass, name);
+            return;
+        }
+    }
+
+    public void removeUser(String email){
+        String query = "DELETE FROM users WHERE email = ?";
+        DB.execute(query, email);
+    }
     
 }

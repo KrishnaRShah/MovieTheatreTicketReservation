@@ -40,5 +40,13 @@ public class SearchMovieController {
         return length;
     }
 
-    
+    public void removeMovie(String movieName){
+        String query = "DELETE FROM movie_archive WHERE name = ?";
+        DB.execute(query, movieName);
+    }
+
+    public void addMovie(String movieName, String movieDesc, String movieLength, String dateAvail){
+        String query = "INSERT INTO movie_archive (name, summary, length, date_available) VALUES (?,?,?,?)";
+        DB.execute(query, movieName, movieDesc, movieLength, dateAvail);
+    }
 }

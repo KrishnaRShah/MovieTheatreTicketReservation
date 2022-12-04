@@ -11,6 +11,7 @@ public class MainFrame extends JFrame {
     private JButton cancelTicketButton;
     public JPanel mainMenuPanel;
     private JButton registerButton;
+    private JButton adminBtn;
 
     public MainFrame() {
 
@@ -42,7 +43,8 @@ public class MainFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //OPEN TICKET CANCELLATION FORM HERE
-
+                CancelTicketFrame cancelFrame = new CancelTicketFrame();
+                cancelFrame.setVisible(true);
             }
         });
 
@@ -53,6 +55,15 @@ public class MainFrame extends JFrame {
                 //OPEN CREATE AN ACCOUNT FORM HERE
                 RegisterUserFrame regUserFrame = new RegisterUserFrame();
                 regUserFrame.setVisible(true);
+
+            }
+        });
+
+        adminBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                AdminFrame adminFrame = new AdminFrame();
+                adminFrame.setVisible(true);
 
             }
         });
