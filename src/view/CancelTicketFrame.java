@@ -65,8 +65,8 @@ public class CancelTicketFrame extends JFrame {
                         int seatID = Integer.parseInt(seatNumber);
 
                         SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
-                        Date currDate = null;
-                        Date recDate = null;
+                        Date currDate = new Date();
+                        Date recDate = new Date();
 
                         try {
                             currDate = sdformat.parse(currentDate);

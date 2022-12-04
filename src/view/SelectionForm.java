@@ -5,6 +5,7 @@ import controller.SearchMovieController;
 import controller.ShowtimesController;
 import controller.TicketController;
 import model.Seat;
+import model.Ticket;
 
 import javax.swing.*;
 import java.awt.*;
@@ -113,8 +114,8 @@ public class SelectionForm extends JFrame {
     private String expiryDate;
 
     private String regUserEmail;
+    private Ticket ticket;
 
-    private int ticketNumber = 1;
     private String seatQuery = "seats";
     private HashMap<Integer, String> idNameMap = new HashMap<>();
     private HashMap<Integer, String> theatreNameMap = new HashMap<>();
@@ -527,14 +528,26 @@ public class SelectionForm extends JFrame {
                         seatSelect.sc.updateSeat(String.valueOf(seatChoice), "0");
                         seatSelect.confirmSeat = true;
 
+
                         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
                         LocalDateTime today = LocalDateTime.now();
                         String dateOfPurchase = today.format(dtf).toString().substring(0, 10);
 
                         System.out.println("Date of Purchase : " + dateOfPurchase);
 
-                        TicketController tc = new TicketController();
-                        tc.addTicketDB(email, seatChoice, dateOfPurchase, theatreChoice, priceChoice, showtimeChoiceMap.get(showtimeChoice));
+//                        TicketController tc = new TicketController();
+//                        tc.addTicketDB(email, seatChoice, dateOfPurchase, theatreChoice, priceChoice, showtimeChoiceMap.get(showtimeChoice));
+
+                        //----------
+                        String theatreTemp = theatreNameMap.get(theatreChoice);
+                        String showTimeTemp = showtimeChoiceMap.get(showtimeChoice);
+                        System.out.println(showTimeTemp);
+                        String movieTemp = idNameMap.get(choice);
+                        ticket = new Ticket(seatChoice, theatreTemp, priceChoice, dateOfPurchase,
+                                                    email,cardnumber,theatreChoice,fullname,seatSelect.getSeat().getSeatId(),
+                                                    showTimeTemp, movieTemp);
+                        TicketController tc = new TicketController(ticket);
+                        tc.addTicketDB();
 
                         JOptionPane.showMessageDialog(null, "Payment and Ticket Processed Successfully! Enjoy your movie!");
 
@@ -551,6 +564,8 @@ public class SelectionForm extends JFrame {
                     } else {
                         //ADD RECEIPT AND PRINTING LOGIC
                         paymentSuccessMessage.setText("Printing ticket and sending email!");
+                        ticket.printReceipt();
+                        Ticket.receiptNumber++;
                     }
                 }
             }
