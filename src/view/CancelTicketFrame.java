@@ -75,8 +75,8 @@ public class CancelTicketFrame extends JFrame {
                         String[] showTimeparts = showDate.split("-");
 
                         //create and int for today and showtime date int = yyyyMMdd
-                        int todayDate = Integer.parseInt(todayparts[0] + todayparts[1] + todayparts[2]); //yearmonthday 20221204
-                        int showTimeDate = Integer.parseInt(showTimeparts[0] + showTimeparts[1] + showTimeparts[2]); //20221206
+                        int todayDate = Integer.parseInt(todayparts[0] + todayparts[1] + todayparts[2]);
+                        int showTimeDate = Integer.parseInt(showTimeparts[0] + showTimeparts[1] + showTimeparts[2]);
 
 
                         //get the theatreID based on the seatID

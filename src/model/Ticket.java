@@ -87,7 +87,7 @@ public class Ticket {
         "Enjoy your movie!";
 
         try {
-            receiptFile = new File(fileName);
+            receiptFile = new File(System.getProperty("user.dir"),fileName);
             myWriter = new FileWriter(fileName);
 
             myWriter.write(sendToFIle);

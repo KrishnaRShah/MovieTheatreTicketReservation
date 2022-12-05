@@ -7,10 +7,12 @@ import controller.TicketController;
 import model.Seat;
 import model.Ticket;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -152,11 +154,16 @@ public class SelectionForm extends JFrame {
         seatsGridPanel.setLayout(null);
 
         //Set default movie icon to black panther
-        ImageIcon temp = new ImageIcon("MovieTheatreTicketReservation/src/view/images/blackpanther.jpg");
-        ImageIcon icon = scaleImage(temp, 200, 300);
-        icon.getImage().flush();
-        moveImageLabel.setIcon(icon);
-        moveImageLabel.setVisible(true);
+        try {
+            ImageIcon temp = new ImageIcon(ImageIO.read(SelectionForm.class.getResource("/view/images/blackpanther.jpg")));
+            ImageIcon icon = scaleImage(temp, 200, 300);
+            icon.getImage().flush();
+            moveImageLabel.setIcon(icon);
+            moveImageLabel.setVisible(true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
         //Get the movie description and length for black panther (default)
         SearchMovieController smc = new SearchMovieController();
@@ -167,17 +174,25 @@ public class SelectionForm extends JFrame {
         lengthLabel.setText("Length: " + length + " minutes");
 
         //EARLY MOVIES --> only available for Registered Users
-        ImageIcon early1 = new ImageIcon("MovieTheatreTicketReservation/src/view/images/legomovie.jpg");
-        ImageIcon early1icon = scaleImage(early1, 200, 300);
-        early1icon.getImage().flush();
-        earlyMovie1Img.setIcon(early1icon);
-        earlyMovie1Img.setVisible(true);
+        try{
+            ImageIcon early1 = new ImageIcon(ImageIO.read(SelectionForm.class.getResource("/view/images/legomovie.jpg")));
+            ImageIcon early1icon = scaleImage(early1, 200, 300);
+            early1icon.getImage().flush();
+            earlyMovie1Img.setIcon(early1icon);
+            earlyMovie1Img.setVisible(true);
+        } catch (IOException e){
+            e.printStackTrace();
+        }
 
-        ImageIcon early2 = new ImageIcon("MovieTheatreTicketReservation/src/view/images/wows.jpg");
-        ImageIcon early2icon = scaleImage(early2, 200, 300);
-        early2icon.getImage().flush();
-        earlyMovie2Img.setIcon(early2icon);
-        earlyMovie2Img.setVisible(true);
+        try {
+            ImageIcon early2 = new ImageIcon(ImageIO.read(SelectionForm.class.getResource("/view/images/wows.jpg")));
+            ImageIcon early2icon = scaleImage(early2, 200, 300);
+            early2icon.getImage().flush();
+            earlyMovie2Img.setIcon(early2icon);
+            earlyMovie2Img.setVisible(true);
+        } catch (IOException e){
+            e.printStackTrace();
+        }
 
         earlyMovie1Name.setText("Movie: The Lego Movie 2");
         earlyMovie1Desc.setText("Description: " + smc.getSummary(11));
@@ -189,25 +204,39 @@ public class SelectionForm extends JFrame {
         //END EARLY MOVIES
 
         //Set Theatre Information such as images and addresses etc
-        ImageIcon temp2 = new ImageIcon("MovieTheatreTicketReservation/src/view/images/landmark.jpg");
-        ImageIcon icon2 = scaleImage(temp2, 150, 150);
-        icon2.getImage().flush();
-        theatreImage1.setIcon(icon2);
+        try {
+            ImageIcon temp2 = new ImageIcon(ImageIO.read(SelectionForm.class.getResource("/view/images/landmark.jpg")));
+            ImageIcon icon2 = scaleImage(temp2, 150, 150);
+            icon2.getImage().flush();
+            theatreImage1.setIcon(icon2);
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+        try {
+            ImageIcon temp3 = new ImageIcon(ImageIO.read(SelectionForm.class.getResource("/view/images/cineplex.jpg")));
+            ImageIcon icon3 = scaleImage(temp3, 150, 150);
+            icon3.getImage().flush();
+            theatreImage2.setIcon(icon3);
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+        try {
+            ImageIcon temp4 = new ImageIcon(ImageIO.read(SelectionForm.class.getResource("/view/images/silvercity.jpg")));
+            ImageIcon icon4 = scaleImage(temp4, 150, 150);
+            icon4.getImage().flush();
+            theatreImage3.setIcon(icon4);
+        } catch (IOException e){
+            e.printStackTrace();
+        }
 
-        ImageIcon temp3 = new ImageIcon("MovieTheatreTicketReservation/src/view/images/cineplex.jpg");
-        ImageIcon icon3 = scaleImage(temp3, 150, 150);
-        icon3.getImage().flush();
-        theatreImage2.setIcon(icon3);
-
-        ImageIcon temp4 = new ImageIcon("MovieTheatreTicketReservation/src/view/images/silvercity.jpg");
-        ImageIcon icon4 = scaleImage(temp4, 150, 150);
-        icon4.getImage().flush();
-        theatreImage3.setIcon(icon4);
-
-        ImageIcon temp5 = new ImageIcon("MovieTheatreTicketReservation/src/view/images/globe.jpeg");
-        ImageIcon icon5 = scaleImage(temp5, 150, 150);
-        icon5.getImage().flush();
-        theatreImage4.setIcon(icon5);
+        try {
+            ImageIcon temp5 = new ImageIcon(ImageIO.read(SelectionForm.class.getResource("/view/images/globe.jpeg")));
+            ImageIcon icon5 = scaleImage(temp5, 150, 150);
+            icon5.getImage().flush();
+            theatreImage4.setIcon(icon5);
+        } catch (IOException e){
+            e.printStackTrace();
+        }
 
         //Group radio buttons --> movie selection
         ButtonGroup group = new ButtonGroup();
@@ -248,11 +277,16 @@ public class SelectionForm extends JFrame {
             //The payment page information is updated as well (updates movie choice, showtime choice etc.)
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource().equals(blackPantherRadioButton)){
-                    ImageIcon temp = new ImageIcon("MovieTheatreTicketReservation/src/view/images/blackpanther.jpg");
-                    ImageIcon icon = scaleImage(temp, 200, 300);
-                    icon.getImage().flush();
-                    moveImageLabel.setIcon(icon);
-                    moveImageLabel.setVisible(true);
+                    try {
+                        ImageIcon temp = new ImageIcon(ImageIO.read(SelectionForm.class.getResource("/view/images/blackpanther.jpg")));
+                        ImageIcon icon = scaleImage(temp, 200, 300);
+                        icon.getImage().flush();
+                        moveImageLabel.setIcon(icon);
+                        moveImageLabel.setVisible(true);
+                    } catch (IOException e1){
+                        e1.printStackTrace();
+                    }
+
                     choice = 1;
 
                     idNameMap.put(choice, "Black Panther");
@@ -265,11 +299,16 @@ public class SelectionForm extends JFrame {
                 }
 
                 if (e.getSource().equals(dragonBallRadioButton)){
-                    ImageIcon temp = new ImageIcon("MovieTheatreTicketReservation/src/view/images/dragonball.jpg");
-                    ImageIcon icon = scaleImage(temp, 200, 300);
-                    icon.getImage().flush();
-                    moveImageLabel.setIcon(icon);
-                    moveImageLabel.setVisible(true);
+                    try {
+                        ImageIcon temp = new ImageIcon(ImageIO.read(SelectionForm.class.getResource("/view/images/dragonball.jpg")));
+                        ImageIcon icon = scaleImage(temp, 200, 300);
+                        icon.getImage().flush();
+                        moveImageLabel.setIcon(icon);
+                        moveImageLabel.setVisible(true);
+                    } catch (IOException e1){
+                        e1.printStackTrace();
+                    }
+
                     choice = 2;
 
                     idNameMap.put(choice, "Dragon Ball");
@@ -282,11 +321,16 @@ public class SelectionForm extends JFrame {
                 }
 
                 if (e.getSource().equals(theDarkKnightRadioButton)){
-                    ImageIcon temp = new ImageIcon("MovieTheatreTicketReservation/src/view/images/batman.jpg");
-                    ImageIcon icon = scaleImage(temp, 200, 300);
-                    icon.getImage().flush();
-                    moveImageLabel.setIcon(icon);
-                    moveImageLabel.setVisible(true);
+                    try {
+                        ImageIcon temp = new ImageIcon(ImageIO.read(SelectionForm.class.getResource("/view/images/batman.jpg")));
+                        ImageIcon icon = scaleImage(temp, 200, 300);
+                        icon.getImage().flush();
+                        moveImageLabel.setIcon(icon);
+                        moveImageLabel.setVisible(true);
+                    } catch (IOException e1){
+                        e1.printStackTrace();
+                    }
+
                     choice = 3;
 
                     idNameMap.put(choice, "The Dark Knight");
@@ -299,11 +343,16 @@ public class SelectionForm extends JFrame {
                 }
 
                 if (e.getSource().equals(interstellarRadioButton)){
-                    ImageIcon temp = new ImageIcon("MovieTheatreTicketReservation/src/view/images/interstellar.jpg");
-                    ImageIcon icon = scaleImage(temp, 200, 300);
-                    icon.getImage().flush();
-                    moveImageLabel.setIcon(icon);
-                    moveImageLabel.setVisible(true);
+                    try {
+                        ImageIcon temp = new ImageIcon(ImageIO.read(SelectionForm.class.getResource("/view/images/interstellar.jpg")));
+                        ImageIcon icon = scaleImage(temp, 200, 300);
+                        icon.getImage().flush();
+                        moveImageLabel.setIcon(icon);
+                        moveImageLabel.setVisible(true);
+                    } catch (IOException e1){
+                        e1.printStackTrace();
+                    }
+
                     choice = 4;
 
                     idNameMap.put(choice, "Interstellar");
@@ -317,11 +366,16 @@ public class SelectionForm extends JFrame {
 
 
                 if (e.getSource().equals(jujutsuKaisenRadioButton)){
-                    ImageIcon temp = new ImageIcon("MovieTheatreTicketReservation/src/view/images/jkaisen.jpg");
-                    ImageIcon icon = scaleImage(temp, 200, 300);
-                    icon.getImage().flush();
-                    moveImageLabel.setIcon(icon);
-                    moveImageLabel.setVisible(true);
+                    try {
+                        ImageIcon temp = new ImageIcon(ImageIO.read(SelectionForm.class.getResource("/view/images/jkaisen.jpg")));
+                        ImageIcon icon = scaleImage(temp, 200, 300);
+                        icon.getImage().flush();
+                        moveImageLabel.setIcon(icon);
+                        moveImageLabel.setVisible(true);
+                    } catch (IOException e1){
+                        e1.printStackTrace();
+                    }
+
                     choice = 5;
 
                     idNameMap.put(choice, "Jujutsu Kaisen");
@@ -335,11 +389,16 @@ public class SelectionForm extends JFrame {
 
 
                 if (e.getSource().equals(womanIsKingRadioButton)){
-                    ImageIcon temp = new ImageIcon("MovieTheatreTicketReservation/src/view/images/wking.jpg");
-                    ImageIcon icon = scaleImage(temp, 200, 300);
-                    icon.getImage().flush();
-                    moveImageLabel.setIcon(icon);
-                    moveImageLabel.setVisible(true);
+                    try {
+                        ImageIcon temp = new ImageIcon(ImageIO.read(SelectionForm.class.getResource("/view/images/wking.jpg")));
+                        ImageIcon icon = scaleImage(temp, 200, 300);
+                        icon.getImage().flush();
+                        moveImageLabel.setIcon(icon);
+                        moveImageLabel.setVisible(true);
+                    } catch (IOException e1){
+                        e1.printStackTrace();
+                    }
+
                     choice = 6;
 
                     idNameMap.put(choice, "Women is King");
@@ -353,11 +412,16 @@ public class SelectionForm extends JFrame {
 
 
                 if (e.getSource().equals(antManRadioButton)){
-                    ImageIcon temp = new ImageIcon("MovieTheatreTicketReservation/src/view/images/antman.jpg");
-                    ImageIcon icon = scaleImage(temp, 200, 300);
-                    icon.getImage().flush();
-                    moveImageLabel.setIcon(icon);
-                    moveImageLabel.setVisible(true);
+                    try {
+                        ImageIcon temp = new ImageIcon(ImageIO.read(SelectionForm.class.getResource("/view/images/antman.jpg")));
+                        ImageIcon icon = scaleImage(temp, 200, 300);
+                        icon.getImage().flush();
+                        moveImageLabel.setIcon(icon);
+                        moveImageLabel.setVisible(true);
+                    } catch (IOException e1){
+                        e1.printStackTrace();
+                    }
+
                     choice = 7;
 
                     idNameMap.put(choice, "Ant Man");
@@ -371,11 +435,16 @@ public class SelectionForm extends JFrame {
 
 
                 if (e.getSource().equals(demonSlayerRadioButton)){
-                    ImageIcon temp = new ImageIcon("MovieTheatreTicketReservation/src/view/images/demonslayer.jpg");
-                    ImageIcon icon = scaleImage(temp, 200, 300);
-                    icon.getImage().flush();
-                    moveImageLabel.setIcon(icon);
-                    moveImageLabel.setVisible(true);
+                    try {
+                        ImageIcon temp = new ImageIcon(ImageIO.read(SelectionForm.class.getResource("/view/images/demonslayer.jpg")));
+                        ImageIcon icon = scaleImage(temp, 200, 300);
+                        icon.getImage().flush();
+                        moveImageLabel.setIcon(icon);
+                        moveImageLabel.setVisible(true);
+                    } catch (IOException e1){
+                        e1.printStackTrace();
+                    }
+
                     choice = 8;
 
                     idNameMap.put(choice, "Demon Slayer");
@@ -389,11 +458,16 @@ public class SelectionForm extends JFrame {
 
 
                 if (e.getSource().equals(tarzanRadioButton)){
-                    ImageIcon temp = new ImageIcon("MovieTheatreTicketReservation/src/view/images/tarzan.jpg");
-                    ImageIcon icon = scaleImage(temp, 200, 300);
-                    icon.getImage().flush();
-                    moveImageLabel.setIcon(icon);
-                    moveImageLabel.setVisible(true);
+                    try {
+                        ImageIcon temp = new ImageIcon(ImageIO.read(SelectionForm.class.getResource("/view/images/tarzan.jpg")));
+                        ImageIcon icon = scaleImage(temp, 200, 300);
+                        icon.getImage().flush();
+                        moveImageLabel.setIcon(icon);
+                        moveImageLabel.setVisible(true);
+                    } catch (IOException e1){
+                        e1.printStackTrace();
+                    }
+
                     choice = 9;
 
                     idNameMap.put(choice, "Tarzan");
@@ -407,11 +481,16 @@ public class SelectionForm extends JFrame {
 
 
                 if (e.getSource().equals(tokyoDriftRadioButton)){
-                    ImageIcon temp = new ImageIcon("MovieTheatreTicketReservation/src/view/images/tdrift.jpg");
-                    ImageIcon icon = scaleImage(temp, 200, 300);
-                    icon.getImage().flush();
-                    moveImageLabel.setIcon(icon);
-                    moveImageLabel.setVisible(true);
+                    try {
+                        ImageIcon temp = new ImageIcon(ImageIO.read(SelectionForm.class.getResource("/view/images/tdrift.jpg")));
+                        ImageIcon icon = scaleImage(temp, 200, 300);
+                        icon.getImage().flush();
+                        moveImageLabel.setIcon(icon);
+                        moveImageLabel.setVisible(true);
+                    } catch (IOException e1){
+                        e1.printStackTrace();
+                    }
+
                     choice = 10;
 
                     idNameMap.put(choice, "Tokyo Drift");
