@@ -125,11 +125,12 @@ public class SelectionForm extends JFrame {
 
     public SelectionForm(boolean isRegisteredUser, String RUEmail){
 
+        //Set isRegistered value to if user is registered or not
         isRegistered = isRegisteredUser;
 
         seatsGridPanel.setLayout(null);
+        //if user is registered, get all card and payment information from the database
         if (isRegistered){
-            System.out.println("Registered User joined");
             regUserEmail = RUEmail;
             tfName.setVisible(false);
             tfEmail.setVisible(false);
@@ -141,7 +142,6 @@ public class SelectionForm extends JFrame {
             email = RUEmail;
 
         } else {
-            System.out.println("Unregistered User Joined");
             optionsTabbedPane.remove(0);
         }
 
@@ -151,12 +151,14 @@ public class SelectionForm extends JFrame {
         setTitle("Book A Ticket");
         seatsGridPanel.setLayout(null);
 
+        //Set default movie icon to black panther
         ImageIcon temp = new ImageIcon("MovieTheatreTicketReservation/src/view/images/blackpanther.jpg");
         ImageIcon icon = scaleImage(temp, 200, 300);
         icon.getImage().flush();
         moveImageLabel.setIcon(icon);
         moveImageLabel.setVisible(true);
 
+        //Get the movie description and length for black panther (default)
         SearchMovieController smc = new SearchMovieController();
         String summary = smc.getSummary(1);
         labelDescription.setText("Description: " + summary);
@@ -164,7 +166,7 @@ public class SelectionForm extends JFrame {
         String length = smc.getLength(1);
         lengthLabel.setText("Length: " + length + " minutes");
 
-        //EARLY MOVIES
+        //EARLY MOVIES --> only available for Registered Users
         ImageIcon early1 = new ImageIcon("MovieTheatreTicketReservation/src/view/images/legomovie.jpg");
         ImageIcon early1icon = scaleImage(early1, 200, 300);
         early1icon.getImage().flush();
@@ -186,6 +188,7 @@ public class SelectionForm extends JFrame {
         earlyMovie2Length.setText("Length: " + smc.getLength(12) + " minutes");
         //END EARLY MOVIES
 
+        //Set Theatre Information such as images and addresses etc
         ImageIcon temp2 = new ImageIcon("MovieTheatreTicketReservation/src/view/images/landmark.jpg");
         ImageIcon icon2 = scaleImage(temp2, 150, 150);
         icon2.getImage().flush();
@@ -206,6 +209,7 @@ public class SelectionForm extends JFrame {
         icon5.getImage().flush();
         theatreImage4.setIcon(icon5);
 
+        //Group radio buttons --> movie selection
         ButtonGroup group = new ButtonGroup();
         group.add(blackPantherRadioButton);
         group.add(dragonBallRadioButton);
@@ -218,22 +222,30 @@ public class SelectionForm extends JFrame {
         group.add(tarzanRadioButton);
         group.add(tokyoDriftRadioButton);
 
+        //Theatre selection button group
         ButtonGroup group2 = new ButtonGroup();
         group2.add(theatreSelect1);
         group2.add(theatreSelect2);
         group2.add(theatreSelect3);
         group2.add(theatreSelect4);
 
+        //Showtime selection button group
         ButtonGroup group3 = new ButtonGroup();
         group3.add(timeSelect1);
         group3.add(timeSelect2);
 
+        //Early movie choice button group
         ButtonGroup earlyGroup = new ButtonGroup();
         earlyGroup.add(earlyChoice1);
         earlyGroup.add(earlyChoice2);
 
         ActionListener listener = new ActionListener() {
             @Override
+
+            //Each if statement is for a movie selection
+            //If a new movie is selected, the image gets updated, the description gets updated and the length gets updated
+            //Along with the showtime information is updated for the showtime display, depending on the movie choice
+            //The payment page information is updated as well (updates movie choice, showtime choice etc.)
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource().equals(blackPantherRadioButton)){
                     ImageIcon temp = new ImageIcon("MovieTheatreTicketReservation/src/view/images/blackpanther.jpg");
@@ -425,10 +437,11 @@ public class SelectionForm extends JFrame {
         tarzanRadioButton.addActionListener(listener);
         tokyoDriftRadioButton.addActionListener(listener);
 
-
+        //Action listener for theatre selection radio buttons
         ActionListener listener1 = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                //Update the theatre information and seat map based on the selection of a theatre
                 if (e.getSource().equals(theatreSelect1)){
                     theatreChoice = 1;
                     theatreNameMap.put(theatreChoice, "Landmark Cinemas");
@@ -437,6 +450,7 @@ public class SelectionForm extends JFrame {
                     setPaymentInfo();
                     updateSeatMap();
                 }
+                //Update the theatre information and seat map based on the selection of a theatre
                 if (e.getSource().equals(theatreSelect2)){
                     theatreChoice = 2;
                     theatreNameMap.put(theatreChoice, "Cineplex Cinemas");
@@ -445,6 +459,7 @@ public class SelectionForm extends JFrame {
                     setPaymentInfo();
                     updateSeatMap();
                 }
+                //Update the theatre information and seat map based on the selection of a theatre
                 if (e.getSource().equals(theatreSelect3)){
                     theatreChoice = 3;
                     theatreNameMap.put(theatreChoice, "SilverCity Cinemas");
@@ -453,6 +468,7 @@ public class SelectionForm extends JFrame {
                     setPaymentInfo();
                     updateSeatMap();
                 }
+                //Update the theatre information and seat map based on the selection of a theatre
                 if (e.getSource().equals(theatreSelect4)){
                     theatreChoice = 4;
                     theatreNameMap.put(theatreChoice, "Globe Cinemas");
@@ -468,6 +484,8 @@ public class SelectionForm extends JFrame {
         theatreSelect3.addActionListener(listener1);
         theatreSelect4.addActionListener(listener1);
 
+        //Showtime selection action listeners
+        //Depending on the selection, update the display in payment tab
         ActionListener listener2 = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -491,11 +509,10 @@ public class SelectionForm extends JFrame {
             if(i > 0){
                 seatQuery = "seats" + i;
             }
-//            final SeatSelect seatTemp = new SeatSelect(seatQuery);
             listofSeatMaps.add(i, new SeatSelect(seatQuery));
         }
 
-        //create intial layout
+        //Create initial layout
         updateSeatMap();
         seatsGridPanel.add(seatSelect.mainLabel);
         seatsGridPanel.add(seatSelect.gridLayout);
@@ -506,8 +523,9 @@ public class SelectionForm extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
+                //Upon CLICK of the final confirm booking button, update values in databases and set seat selection
+                //the databse as final
                 if (e.getSource().equals(finalConfirmBtn)){
-
 
                     if (!isRegistered){
                         fullname = tfName.getText();
@@ -517,6 +535,7 @@ public class SelectionForm extends JFrame {
                         expiryDate = tfExpiryDate.getText();
                     }
 
+                    //Error checking
                     if (fullname.equals("") || email.equals("") || cardnumber.equals("") || CVV.equals("") || expiryDate.equals("")
                     || cardnumber.length() != 16 || CVV.length() != 3 || !expiryDate.contains("/") || choice == -1
                             || theatreChoice == -1 || showtimeChoice == -1 || seatChoice == -1 || priceChoice.equals("")){
@@ -533,15 +552,9 @@ public class SelectionForm extends JFrame {
                         LocalDateTime today = LocalDateTime.now();
                         String dateOfPurchase = today.format(dtf).toString().substring(0, 10);
 
-                        System.out.println("Date of Purchase : " + dateOfPurchase);
 
-//                        TicketController tc = new TicketController();
-//                        tc.addTicketDB(email, seatChoice, dateOfPurchase, theatreChoice, priceChoice, showtimeChoiceMap.get(showtimeChoice));
-
-                        //----------
                         String theatreTemp = theatreNameMap.get(theatreChoice);
                         String showTimeTemp = showtimeChoiceMap.get(showtimeChoice);
-                        System.out.println(showTimeTemp);
                         String movieTemp = idNameMap.get(choice);
                         ticket = new Ticket(seatChoice, theatreTemp, priceChoice, dateOfPurchase,
                                                     email,cardnumber,theatreChoice,fullname,seatSelect.getSeat().getSeatId(),
@@ -550,19 +563,15 @@ public class SelectionForm extends JFrame {
                         tc.addTicketDB();
 
                         JOptionPane.showMessageDialog(null, "Payment and Ticket Processed Successfully! Enjoy your movie!");
-
-//                        System.out.println(ticketNumber);
-//                        ticketNumber++;
-                        //ADD EMAIL SENDING LOGIC HERE / UPDATE ANY DBS ETC.
                     }
                 }
 
+                //Upon click of the print receipt button, print a txt file of the receipt and ticket information
+                //alon with display an error message
                 if (e.getSource().equals(sendGenReceiptBtn)){
-
                     if (!confirmPressed){
                         paymentSuccessMessage.setText("Please confirm a booking!");
                     } else {
-                        //ADD RECEIPT AND PRINTING LOGIC
                         paymentSuccessMessage.setText("Printing ticket and sending email!");
                         ticket.printReceipt();
                         Ticket.receiptNumber++;
@@ -573,7 +582,7 @@ public class SelectionForm extends JFrame {
         finalConfirmBtn.addActionListener(listener3);
         sendGenReceiptBtn.addActionListener(listener3);
 
-        //EARLY CHOICE ACTION LISTENER
+        //Action Listener for early movie selection (only for Registered Users)
         ActionListener listener4 = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -596,7 +605,7 @@ public class SelectionForm extends JFrame {
         earlyChoice2.addActionListener(listener4);
     }
 
-
+    //Scale image function to scale an image to a specified size while maintaining the aspect ratio
     public ImageIcon scaleImage(ImageIcon icon, int w, int h)
     {
         int nw = icon.getIconWidth();
@@ -614,6 +623,7 @@ public class SelectionForm extends JFrame {
         return new ImageIcon(icon.getImage().getScaledInstance(nw, nh, Image.SCALE_DEFAULT));
     }
 
+    //Set the summary and length of a movie based on the movie choice (updates gui)
     public void setSummaryLengthInfo(int choice){
         SearchMovieController smc = new SearchMovieController();
         String summary = smc.getSummary(choice);
@@ -623,6 +633,7 @@ public class SelectionForm extends JFrame {
         lengthLabel.setText("Length: " + length + " minutes");
     }
 
+    //Set the showtime date and time of a movie based on the movie choice (updates gui)
     public void setShowtimeInfo(int choice){
         ShowtimesController showtimeController = new ShowtimesController();
         String[] showtimeInfo = showtimeController.getShowtimeInfo(choice);
@@ -641,11 +652,13 @@ public class SelectionForm extends JFrame {
         selectedLabel2.setText("Movie Selected: " + idNameMap.get(choice));
     }
 
+    //Set the payment tab theatre choice info (updates gui)
     public void setTheatreInfo(int choice){
         theatreSelected1.setText("Theatre: " + theatreNameMap.get(choice));
         theatreSelected2.setText("Theatre: " + theatreNameMap.get(choice));
     }
 
+    //Set the payment tab final information (updates gui)
     public void setPaymentInfo(){
         finalSelectedMovie.setText("Movie: " + idNameMap.get(choice));
         finalSelectedTheatre.setText("Theatre: " + theatreNameMap.get(theatreChoice));
@@ -654,6 +667,8 @@ public class SelectionForm extends JFrame {
         finalFeeLabel.setText("Price: " + seatSelect.getPrice());
     }
 
+    //update card information and payment information if registered user
+    //retrieve from database and set values in GUI
     public void getRegisteredUserInfo(String email){
         RegUserInformationController regUserInfoControl = new RegUserInformationController();
         String[] userInfo = regUserInfoControl.getInfoByEmail(email);
@@ -671,6 +686,7 @@ public class SelectionForm extends JFrame {
 
     }
 
+    //Update seat map function upon click of a seat button
     public void updateSeatMap(){
             if(theatreChoice == -1){
                 seatSelect = listofSeatMaps.get(0);
@@ -689,13 +705,9 @@ public class SelectionForm extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(e.getSource().equals(SeatSelect.confirm)) {
-//                    seatSelect = listofSeatMaps.get(theatreChoice);
-                    System.out.println(seatSelect.getSeat().getSeatId());
                     priceChoice = seatSelect.getPrice();
                     seatChoice = seatSelect.getSeat().getSeatNumber();
                     setPaymentInfo();
-                    System.out.println("LOL");
-                    System.out.println(theatreChoice);
                 }
             }
         });

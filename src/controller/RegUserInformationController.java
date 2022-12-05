@@ -6,15 +6,19 @@ import java.sql.SQLException;
 public class RegUserInformationController {
     private DBController DB;
 
+    //Constructor
     public RegUserInformationController(){
         DB = DBController.getInstance();
     }
 
+    //Method to Register a User in the database
     public boolean registerUser(String username, String pass, String email, String name){
 
         String searchQuery = "SELECT * FROM users";
         ResultSet results = DB.query(searchQuery);
         boolean temp = false;
+
+        //search for duplicates
         try {
             while (results.next()){
                 String resEmail = results.getString("email");
@@ -30,6 +34,7 @@ public class RegUserInformationController {
             e.printStackTrace();
         }
 
+        //if duplicate found, return false, else return true (successful registration)
         if (temp){
             return false;
         } else {
@@ -39,6 +44,7 @@ public class RegUserInformationController {
         }
     }
 
+    //Register the card associated with the user
     public boolean registerCard(String name, String cardNumber, String CVV, String expiryDate){
         String searchQuery = "SELECT * FROM cards";
         ResultSet results = DB.query(searchQuery);
@@ -70,6 +76,7 @@ public class RegUserInformationController {
         }
     }
 
+    //Register an Admin in the DB
     public void registerAdmin(String pass, String email, String name){
 
         String searchQuery = "SELECT * FROM users";
@@ -99,14 +106,18 @@ public class RegUserInformationController {
         }
     }
 
+    //Remove a User from the DB
     public void removeUser(String email){
         String query = "DELETE FROM users WHERE email = ?";
         DB.execute(query, email);
     }
 
+    //Get all User information by email in the form of a String array
     public String[] getInfoByEmail(String email) {
         String nameQuery = "SELECT * FROM users WHERE email = ?";
         ResultSet res = DB.query(nameQuery, email);
+
+        //Get name associated with registered email
         String returnedName = "";
         try {
             if (res.next()){
@@ -116,6 +127,7 @@ public class RegUserInformationController {
             e.printStackTrace();
         }
 
+        //Get associated card information with registered name
         String cardQuery = "SELECT * FROM cards WHERE name_on_card = ?";
         ResultSet cardRes = DB.query(cardQuery, returnedName);
 
@@ -133,6 +145,7 @@ public class RegUserInformationController {
             e1.printStackTrace();
         }
 
+        //update String[]
         String[] userInfo = new String[4];
         userInfo[0] = returnedName;
         userInfo[1] = retCardNum;
@@ -142,6 +155,7 @@ public class RegUserInformationController {
         return userInfo;
     }
 
+    //Check if a User needs to pay the annual fee --> return true if yes, else return false
     public boolean needsToPayFee(String email){
         String query = "SELECT * FROM users WHERE email = ?";
         ResultSet results = DB.query(query, email);
@@ -160,6 +174,7 @@ public class RegUserInformationController {
         return required;
     }
 
+    //Method to pay the annual fee (updates in the user database)
     public void payAnnualFee(String email){
         String query = "UPDATE users SET annualFeeDue = ? WHERE email = ?";
         DB.execute(query, 0, email);

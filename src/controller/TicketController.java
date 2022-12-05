@@ -10,16 +10,18 @@ public class TicketController {
     private DBController DB;
     private Ticket ticket;
 
+    //Constructor
     public TicketController(Ticket ticket){
         DB = DBController.getInstance();
         this.ticket = ticket;
     }
 
+    //Default Constructor
     public TicketController(){
         DB = DBController.getInstance();
     }
 
-
+    //Method to return the seatID from the database, depending on the seat number
     public int getSeatID(int seatNumber){
         String query = "SELECT * FROM tickets WHERE seat_id = ?";
         ResultSet res = DB.query(query, seatNumber);
@@ -34,6 +36,7 @@ public class TicketController {
         return seatID;
     }
 
+    //Method to return theatreID, with seat number as input
     public int getTheatreID(int seatNumber){
         String query = "SELECT * FROM tickets WHERE seat_id = ?";
         ResultSet res = DB.query(query, seatNumber);
@@ -48,6 +51,7 @@ public class TicketController {
         return theatreID;
     }
 
+    //Method to return ticket date of purchase
     public String getPurchasedDate(int seatNumber){
         String query = "SELECT * FROM tickets WHERE seat_id = ?";
         ResultSet res = DB.query(query, seatNumber);
@@ -62,6 +66,7 @@ public class TicketController {
         return resShowtime;
     }
 
+    //Method to return ticket price
     public String getTicketPrice(int seatNumber){
         String query = "SELECT * FROM tickets WHERE seat_id = ?";
         ResultSet res = DB.query(query, seatNumber);
@@ -76,17 +81,14 @@ public class TicketController {
         return resPrice;
     }
 
+    //Method to remove a ticket from the database
     public void removeTicketFromDB(int seatNumber){
         String query = "DELETE FROM tickets WHERE seat_id = ?";
         DB.execute(query, seatNumber);
     }
 
-//    public void addTicketDB(String email, int seatNumber, String dateOfPurchase, int theatreID, String price, String showtime){
-//        String query = "INSERT INTO tickets (user_email, seat_id, purchased_date, theatre_id, ticket_price, showtime) VALUES (?,?,?,?,?,?)";
-//        DB.execute(query, email, seatNumber, dateOfPurchase, theatreID, price, showtime);
-//    }
-
-   public void addTicketDB(){
+    //Method to add a ticket into the database
+    public void addTicketDB(){
         System.out.println(ticket.getEmail());
         System.out.println(ticket.getint());
         System.out.println(ticket.getDateOfPurchase());

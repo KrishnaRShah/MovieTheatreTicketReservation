@@ -7,7 +7,6 @@ import java.sql.SQLException;
 
 import java.sql.*;
 
-
 public class DBController {
 
     //Member variables used for connecting database
@@ -35,6 +34,7 @@ public class DBController {
 		return instance;
 	}
 
+    //Main Query Method --> Returns a ResultSet object
     public ResultSet query(String query, Object... args){
         try{
             PreparedStatement statement = connector.prepareStatement(query);
@@ -52,6 +52,7 @@ public class DBController {
         return null;
     }
 
+    //Main Execute Method --> Executes queries and updates the DB
     public void execute(String query, Object... args){
         try {
             PreparedStatement statement = connector.prepareStatement(query);

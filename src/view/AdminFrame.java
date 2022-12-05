@@ -38,13 +38,16 @@ public class AdminFrame extends JFrame{
     private String adminEmail;
     private String adminPass;
 
+    //Constructor
     public AdminFrame(){
         setSize(900, 600);
         setTitle("Admin Panel");
         setContentPane(adminPanel);
 
+        //Remove privileges panel until successfully login
         adminTabs.remove(adminPrivPanel);
 
+        //Code to verify
         adLoginBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -69,7 +72,7 @@ public class AdminFrame extends JFrame{
             }
         });
 
-
+        //Code to remove movies and add movies to the database
         ActionListener listener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -77,7 +80,6 @@ public class AdminFrame extends JFrame{
                 SearchMovieController smc = new SearchMovieController();
 
                 if (e.getSource().equals(remMovieBtn)){
-                    //SEARCH MOVIES AND ADD HERE
                     if (tfRemMovie.getText().equals("")){
                         remMovLabel.setText("Invalid Input");
                     } else {
@@ -101,7 +103,7 @@ public class AdminFrame extends JFrame{
         remMovieBtn.addActionListener(listener);
         addMovieBtn.addActionListener(listener);
 
-
+        //Code to remove users and add admin users to the database
         ActionListener listener1 = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -109,7 +111,6 @@ public class AdminFrame extends JFrame{
                 RegUserInformationController rc = new RegUserInformationController();
 
                 if (e.getSource().equals(removeUserButton)){
-                    //ADD USER HERE
                     if (tfRemEmail.getText().equals("")){
                         remUserLabel.setText("Invalid Input");
                     } else {
@@ -120,7 +121,6 @@ public class AdminFrame extends JFrame{
                 }
 
                 if (e.getSource().equals(addAdminButton)){
-                    //ADD ADMIN HERE
                     if (tfAddPass.getText().equals("") || tfAddEmail.getText().equals("") || tfAddName.getText().equals("")){
                         addAdminLabel.setText("Invalid Input");
                     } else {

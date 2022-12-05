@@ -19,7 +19,7 @@ public class Ticket {
     private String movieName;
     public static int receiptNumber = 1;
 
-    public  Ticket(int seatID, String theatre, String ticketPrice,
+    public Ticket(int seatID, String theatre, String ticketPrice,
                    String dateOfPurchase, String email, String cardNumber,
                    int theatreID, String fullName, String seat, String dateOfMovie,
                     String movieName){
@@ -66,6 +66,7 @@ public class Ticket {
         return dateOfMovie;
     }
 
+    //Method to print the receipt and ticket info in a .TXT file
     public void printReceipt(){
         File receiptFile = null;
         FileWriter myWriter = null;

@@ -6,10 +6,12 @@ import java.sql.SQLException;
 public class SearchMovieController {
     private DBController DB;
 
+    //Constructor
     public SearchMovieController(){
         DB = DBController.getInstance();
     }
 
+    //Method to get Movie Description
     public String getSummary(int id){
         String query = "SELECT * FROM movie_archive WHERE id = ?";
         ResultSet results = DB.query(query, id);
@@ -25,6 +27,7 @@ public class SearchMovieController {
 
     }
 
+    //Method to get movie Length from DB
     public String getLength(int id){
         String query = "SELECT * FROM movie_archive WHERE id = ?";
         ResultSet results = DB.query(query, id);
@@ -40,11 +43,13 @@ public class SearchMovieController {
         return length;
     }
 
+    //Method to remove a movie from the DB
     public void removeMovie(String movieName){
         String query = "DELETE FROM movie_archive WHERE name = ?";
         DB.execute(query, movieName);
     }
 
+    //Method to add a movie into the DB along with movie information
     public void addMovie(String movieName, String movieDesc, String movieLength, String dateAvail){
         String query = "INSERT INTO movie_archive (name, summary, length, date_available) VALUES (?,?,?,?)";
         DB.execute(query, movieName, movieDesc, movieLength, dateAvail);

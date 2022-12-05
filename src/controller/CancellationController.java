@@ -7,10 +7,12 @@ public class CancellationController {
 
     private DBController DB;
 
+    //Constructor
     public CancellationController(){
         DB = DBController.getInstance();
     }
 
+    //Method to verifyUser as registered or unregistered
     public boolean verifyUser(String email) {
         //SQL query
         String query = "SELECT * FROM users";

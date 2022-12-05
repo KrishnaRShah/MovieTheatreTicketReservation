@@ -88,7 +88,7 @@
             <properties>
               <font name="Arial Black" size="14" style="0"/>
               <foreground color="-16314349"/>
-              <text value="Username"/>
+              <text value="Email"/>
             </properties>
           </component>
           <component id="4b2c1" class="javax.swing.JTextField" binding="tfUsername">

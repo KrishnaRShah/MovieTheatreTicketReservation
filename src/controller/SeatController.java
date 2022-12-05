@@ -7,21 +7,20 @@ public class SeatController {
     private DBController DB;
     private String seatQuery;
 
+    //Constructor
     public SeatController(String seatChoice){
-
         DB = DBController.getInstance();
         seatQuery = seatChoice;
     }
 
-
+    //Update Seat In the DB as booked or empty
     public void updateSeat(String id, String reserved){
         String query = "UPDATE " + seatQuery + " SET reserved = ? WHERE id = ?";
         DB.execute(query, reserved, id);
     }
 
+    //Reserve Seat
     public String reserveSeat(String id){
-        //SQL query
-//        String query = "SELECT * FROM seats";
         String query = "SELECT * FROM " + seatQuery;
         ResultSet results = DB.query(query);
         String resVerified = " ";
@@ -41,6 +40,7 @@ public class SeatController {
         return resVerified;
     }
 
+    //Method to Get TicketID and Price
     public String ticketPrice(String id){
         //SQL query
         String query = "SELECT * FROM " + seatQuery;

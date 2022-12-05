@@ -7,6 +7,14 @@ public class Receipt {
     private String timeOfPurchase;
     private Payment paymentMethod;
 
+    public Receipt(String name, double price, String dateOP, String timeOP, Payment payment){
+        this.movieName = name;
+        this.price = price;
+        this.dateOfPurchase = dateOP;
+        this.timeOfPurchase = timeOP;
+        this.paymentMethod = payment;
+    }
+
     /* GETTERS */
     public String getMovieName(){
         return movieName;

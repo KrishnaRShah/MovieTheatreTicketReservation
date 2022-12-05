@@ -6,10 +6,12 @@ import java.sql.SQLException;
 public class LoginController {
     private DBController DB;
 
+    //Constructor
     public LoginController(){
         DB = DBController.getInstance();
     }
 
+    //Method to verify the user from the database --> if valid login or not
     public boolean verifyUser(String username, String password){
         //SQL query
         String query = "SELECT * FROM users";
@@ -33,6 +35,7 @@ public class LoginController {
         return verified;
     }
 
+    //Method to verify if the admin is valid or not
     public boolean verifyAdmin(String username, String password){
         //SQL query
         String query = "SELECT * FROM users";

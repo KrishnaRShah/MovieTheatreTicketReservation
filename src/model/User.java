@@ -5,6 +5,12 @@ public class User {
     private Payment paymentMethod;
     private Seat seat;
 
+    public User(Ticket ticket, Payment payment, Seat seat){
+        this.ticket = ticket;
+        this.paymentMethod = payment;
+        this.seat = seat;
+    }
+
     /* GETTERS */
     public Ticket getUserTicket(){
         return ticket;

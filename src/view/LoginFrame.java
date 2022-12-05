@@ -47,13 +47,14 @@ public class LoginFrame extends JFrame {
 
                 LoginController lc = new LoginController();
 
-
+                //verify the login based on the email entered and password entered
                 if (lc.verifyUser(inUsername, inPass)){
                     successText.setText("Logging in!");
 
                     RegUserInformationController regInfoController = new RegUserInformationController();
                     boolean feeRequired = regInfoController.needsToPayFee(inUsername);
 
+                    //If required to pay fee, pay the fee, else open movie selection panel (SelectionForm)
                     if (feeRequired){
                         int result = JOptionPane.showConfirmDialog(null, "Annual Fee of $20.00 is required to proceed. Press YES to pay!");
                         if (result == JOptionPane.YES_OPTION){
@@ -74,10 +75,10 @@ public class LoginFrame extends JFrame {
                     successText.setText("Not Registered!");
                 }
 
-                //CHECK WITH DB HERE IF VALID PASSWORD, IF VALID PASSWORD, CONTINUE TO MOVIE ANNOUNCEMENT
             }
         });
 
+        //If user cancels, close/dispose the frame
         cancelButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

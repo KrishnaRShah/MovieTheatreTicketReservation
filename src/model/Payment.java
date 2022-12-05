@@ -8,6 +8,15 @@ public class Payment {
     private String name;
     private String email;
 
+    public Payment(User user, String number, String code, String date, String name, String email){
+        this.user = user;
+        this.cardNumber = number;
+        this.CVV = code;
+        this.expiryDate = date;
+        this.name = name;
+        this.email = email;
+    }
+
     /* GETTERS */
     private User getPaymentUser(){
         return user;

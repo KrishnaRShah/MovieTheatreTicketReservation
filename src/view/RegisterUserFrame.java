@@ -41,7 +41,8 @@ public class RegisterUserFrame extends JFrame {
         submitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                //Check if the inputs are valid
+                //If invalid, print error message
                 if (tfUsername.getText().equals("") || tfPassword.getText().equals("") || tfEmail.getText().equals("") ||
                         tfCardNum.getText().equals("") || tfCVV.getText().equals("") || tfExpiryDate.getText().equals("")
                         || tfCVV.getText().length() != 3 || tfCardNum.getText().length() != 16 || !tfExpiryDate.getText().contains("/")
@@ -56,6 +57,7 @@ public class RegisterUserFrame extends JFrame {
                     inCVV = tfCVV.getText();
                     inExpiryDate = tfExpiryDate.getText();
 
+                    //if successfully registered user, print message, else print error message if account exists already
                     RegUserInformationController regController = new RegUserInformationController();
                     boolean temp = regController.registerUser(inUsername, inPass, inEmail, inFullName);
                     boolean newTemp = regController.registerCard(inFullName, inCardNum, inCVV, inExpiryDate);

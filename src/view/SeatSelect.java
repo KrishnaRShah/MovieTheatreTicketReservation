@@ -19,16 +19,13 @@ public class SeatSelect implements ActionListener {
     static JButton confirm;
     JButton reset;
 
-
     boolean confirmSeat;
     //list to keep track of button
     private  ArrayList<Seat> seatList;
     private ArrayList<JToggleButton> buttonArrayList;
 
-
     JPanel gridLayout;
     ButtonGroup group;
-    //create list of lists to keep track of [ID,RESEREVED,PRICE?]
 
     AbstractButton abstractButtom;
     private Seat currentSelected;
@@ -43,7 +40,6 @@ public class SeatSelect implements ActionListener {
         currentSelected = new Seat(0,"0", " ");
         sc = new SeatController(seatChoice);
         int size = (rows * columns) + 1;
-
 
         seatList = new ArrayList<Seat>(size);
         seatList.add(0, null);
@@ -92,13 +88,13 @@ public class SeatSelect implements ActionListener {
                 //check if seat is reserved
                 String reserved = sc.reserveSeat(id);
 
-                // if reserved seat wont be able to be selected
+                // if reserved seat won't be able to be selected
                 if(reserved.equals("0")){
                     setButton(button);
                 }
-                //other wise we create a button for the seat
+                //otherwise we create a button for the seat
                 else{
-                    //button action listner
+                    //button action listener
                     button.addActionListener(new ActionListener() {
                         public void actionPerformed(ActionEvent event) {
                             abstractButtom = (AbstractButton)event.getSource();
@@ -131,23 +127,11 @@ public class SeatSelect implements ActionListener {
         this.mainPanel.add(gridLayout);
 
         String confirmString = "Confirm Seats";
-//        this.confirm = new JButton(confirmString);
-//        this.confirm.setBounds(443, 420, 150, 30);
-//        this.confirm.addActionListener(this);
-//        this.mainPanel.add(this.confirm);
 
         String resetString = "Reset Test";
         this.reset = new JButton(resetString);
         this.reset.setBounds(428, 475, 150, 30);
         this.reset.addActionListener(this);
-
-
-//        this.mainPanel.add(this.reset);
-//        System.out.println("I HATE THIS FAY FHIS");
-//        this.frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-//        this.frame.add(this.mainPanel);
-//        this.frame.setVisible(true);
-
     }
 
 
@@ -207,12 +191,5 @@ public class SeatSelect implements ActionListener {
         return seatChoice;
     }
 
-    //    public static void main(String[] args) {
-//        EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new SeatSelect();
-//            }
-//        });
-//    }
 }
 

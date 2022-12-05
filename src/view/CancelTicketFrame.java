@@ -38,22 +38,15 @@ public class CancelTicketFrame extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource().equals(cancelTicketBtn)){
 
+                    //get input email and seat number
                     email = tfEmail.getText();
                     seatNumber = tfSeatnumber.getText();
 
                     if (email.equals("") || seatNumber.equals("")){
                         successLabel.setText("One or more fields invalid!");
                     } else {
-                        //ADD TICKET CANCELLATION LOGIC HERE USING TICKET CONTROLLER
-                        //1. CHECK IF EMAIL ENTERED IS FOR REGISTERED USER
-                        //2. CHECK IF SEAT NUMBER MATCHES ONE IN DB
-                        //3. CHECK IF TICKET # MATCHES ONE IN DB
-                        //4. IF THEY MATCH,
-                        //      --> IF RU, REFUND WHOLE AMOUNT
-                        //      --> ELSE, REFUND 85%
-                        //      DISPLAY SUCCESS MESSAGE
-                        //   ELSE, DISPLAY ERROR MESSAGE
 
+                        //Initially check if the user is an RU
                         CancellationController cancelController = new CancellationController();
                         boolean isRU = cancelController.verifyUser(email);
 
@@ -61,6 +54,7 @@ public class CancelTicketFrame extends JFrame {
                         LocalDateTime today = LocalDateTime.now();
                         String currentDate = today.format(dtf).toString().substring(0, 10);
 
+                        //get the seatID based on inputted seat number
                         TicketController tc = new TicketController();
                         int seatID = Integer.parseInt(seatNumber);
 
@@ -75,19 +69,27 @@ public class CancelTicketFrame extends JFrame {
                             ex.printStackTrace();
                         }
 
+                        //Compare todays date (date of cancellation) and the date of the showtime
                         int todayDateDays = Integer.parseInt(currDate.toString().substring(8, 10));
                         int showtimeDateDays = Integer.parseInt(recDate.toString().substring(8, 10));
 
+                        //get the theatreID based on the seatID
                         int theatreID = tc.getTheatreID(seatID);
 
+                        //Get the ticket price
                         double ticketPrice = Double.parseDouble(tc.getTicketPrice(seatID));
 
-                        if (seatID == tc.getSeatID(seatID) && (currDate.compareTo(recDate) < 0) && (showtimeDateDays - todayDateDays >= 3)){
+                        //If valid cancellation request, update the database and print message
+                        //else display error message
+                        if (seatID == tc.getSeatID(seatID) && (currDate.compareTo(recDate) < 0)){
+
                             String temp = "seats" + theatreID;
                             SeatController sc = new SeatController(temp);
 
                             sc.updateSeat(String.valueOf(seatID), "1");
                             tc.removeTicketFromDB(seatID);
+
+                            //if Registered User, return full ticket price, else refund 85%
                             if (isRU){
                                 JOptionPane.showMessageDialog(null, "Refunded Full Ticket Price: $" + ticketPrice);
                             } else {

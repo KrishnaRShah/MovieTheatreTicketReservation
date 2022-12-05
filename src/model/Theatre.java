@@ -7,6 +7,13 @@ public class Theatre {
     private String address;
     private ArrayList<Movie> movies;
 
+    public Theatre(String name, String address, ArrayList<Movie> movies){
+        this.theatreName = name;
+        this.address = address;
+        this.movies = movies;
+    }
+
+    /* GETTERS */
     public String getTheatreName(){
         return theatreName;
     }
@@ -19,6 +26,7 @@ public class Theatre {
         return movies;
     }
 
+    /* SETTERS */
     public void addMovie(Movie movie){
         movies.add(movie);
     }

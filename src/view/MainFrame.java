@@ -20,7 +20,7 @@ public class MainFrame extends JFrame {
         setSize(450, 700);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-
+        //If login button was pressed, open login frame
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -29,6 +29,7 @@ public class MainFrame extends JFrame {
             }
         });
 
+        //If continue as guest button was pressed, open the movie selection frame
         continueAsGuestButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -38,7 +39,7 @@ public class MainFrame extends JFrame {
             }
         });
 
-
+        //If cancel ticket button pressed, open Cancel Ticket Frame
         cancelTicketButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -48,7 +49,7 @@ public class MainFrame extends JFrame {
             }
         });
 
-
+        //If register button pressed, open account registration frame
         registerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -59,6 +60,7 @@ public class MainFrame extends JFrame {
             }
         });
 
+        //If administrator button pressed, open admin frame
         adminBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
