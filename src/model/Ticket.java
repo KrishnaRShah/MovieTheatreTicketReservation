@@ -3,6 +3,8 @@ package model;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URLDecoder;
+
 
 public class Ticket {
     private int ticketID;
@@ -68,7 +70,6 @@ public class Ticket {
 
     //Method to print the receipt and ticket info in a .TXT file
     public void printReceipt(){
-        File receiptFile = null;
         FileWriter myWriter = null;
         String fileName = "ReceiptAndTicket"+receiptNumber+".txt";
 
@@ -87,9 +88,15 @@ public class Ticket {
         "Enjoy your movie!";
 
         try {
-            receiptFile = new File(System.getProperty("user.dir"),fileName);
-            myWriter = new FileWriter(fileName);
-
+            //get path of jar
+            String path = Ticket.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+            path = path.substring(0, path.lastIndexOf("/") + 1); //remove the jar from end of string
+            String decodedPath = URLDecoder.decode(path, "UTF-8");
+            //create file object in same directory as jar
+            File fileObject = new File(decodedPath  + fileName);
+            fileObject.createNewFile();
+            //write to file
+            myWriter = new FileWriter(fileObject);
             myWriter.write(sendToFIle);
             myWriter.close();
         } catch (IOException e) {
