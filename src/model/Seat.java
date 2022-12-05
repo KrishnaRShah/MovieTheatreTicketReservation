@@ -6,6 +6,7 @@ public class Seat {
     private String reserved;
     private  String seatId;
 
+    //constructor
     public Seat(int seatNumber, String reserved, String id){
         this.seatNumber = seatNumber;
         this.reserved = reserved;

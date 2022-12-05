@@ -516,7 +516,7 @@ public class SelectionForm extends JFrame {
         updateSeatMap();
         seatsGridPanel.add(seatSelect.mainLabel);
         seatsGridPanel.add(seatSelect.gridLayout);
-        seatsGridPanel.add(seatSelect.reset);
+//        seatsGridPanel.add(seatSelect.reset);
 
 
         ActionListener listener3 = new ActionListener() {
@@ -696,7 +696,7 @@ public class SelectionForm extends JFrame {
             seatsGridPanel.removeAll();
             seatsGridPanel.add(seatSelect.mainLabel);
             seatsGridPanel.add(seatSelect.gridLayout);
-            seatsGridPanel.add(seatSelect.reset);
+//            seatsGridPanel.add(seatSelect.reset);
         String confirmString = "Set Seat";
         SeatSelect.confirm = new JButton(confirmString);
         SeatSelect.confirm.setBounds(443, 420, 150, 30);

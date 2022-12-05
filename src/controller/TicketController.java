@@ -89,9 +89,6 @@ public class TicketController {
 
     //Method to add a ticket into the database
     public void addTicketDB(){
-        System.out.println(ticket.getEmail());
-        System.out.println(ticket.getint());
-        System.out.println(ticket.getDateOfPurchase());
         String query = "INSERT INTO tickets (user_email, seat_id, purchased_date, theatre_id, ticket_price, showtime) VALUES (?,?,?,?,?,?)";
         DB.execute(query, ticket.getEmail(), ticket.getint(), ticket.getDateOfPurchase(), ticket.getTheatreID(), ticket.getTicketPrice(),ticket.getDateOfMovie());
     }

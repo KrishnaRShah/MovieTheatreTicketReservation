@@ -15,6 +15,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 public class CancelTicketFrame extends JFrame {
+    //variables used
     private JLabel emailLabel;
     private JTextField tfEmail;
     private JTextField tfSeatnumber;
@@ -23,16 +24,19 @@ public class CancelTicketFrame extends JFrame {
     private JLabel successLabel;
     private JPanel cancellationPane;
 
+
     private String email;
     private String seatNumber;
 
     public CancelTicketFrame(){
 
+        //set size of frame and add content
         setSize(400, 700);
         setContentPane(cancellationPane);
         setTitle("Cancel A Ticket");
         setResizable(false);
 
+        //create button for window
         cancelTicketBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -50,28 +54,30 @@ public class CancelTicketFrame extends JFrame {
                         CancellationController cancelController = new CancellationController();
                         boolean isRU = cancelController.verifyUser(email);
 
-                        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-                        LocalDateTime today = LocalDateTime.now();
-                        String currentDate = today.format(dtf).toString().substring(0, 10);
-
                         //get the seatID based on inputted seat number
                         TicketController tc = new TicketController();
                         int seatID = Integer.parseInt(seatNumber);
 
+                        //set date format and get current date
                         SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
-                        Date currDate = new Date();
-                        Date recDate = new Date();
+                        Date todayDate1 = new Date();
+                        
+                        //string to get dates from DATAbase and current date with proper format
+                        String currDate = "";
+                        String showDate = "";
+                        
+                        //set current date and showtime date
+                        currDate = sdformat.format(todayDate1);
+                        showDate = tc.getPurchasedDate(seatID);
 
-                        try {
-                            currDate = sdformat.parse(currentDate);
-                            recDate = sdformat.parse(tc.getPurchasedDate(seatID));
-                        } catch (ParseException ex) {
-                            ex.printStackTrace();
-                        }
+                        //split strings so we can get the Year, month and day seperate
+                        String[] todayparts = currDate.split("-");   //[0] = year [1] = month [2] = day
+                        String[] showTimeparts = showDate.split("-");
 
-                        //Compare todays date (date of cancellation) and the date of the showtime
-                        int todayDateDays = Integer.parseInt(currDate.toString().substring(8, 10));
-                        int showtimeDateDays = Integer.parseInt(recDate.toString().substring(8, 10));
+                        //create and int for today and showtime date int = yyyyMMdd
+                        int todayDate = Integer.parseInt(todayparts[0] + todayparts[1] + todayparts[2]); //yearmonthday 20221204
+                        int showTimeDate = Integer.parseInt(showTimeparts[0] + showTimeparts[1] + showTimeparts[2]); //20221206
+
 
                         //get the theatreID based on the seatID
                         int theatreID = tc.getTheatreID(seatID);
@@ -81,11 +87,13 @@ public class CancelTicketFrame extends JFrame {
 
                         //If valid cancellation request, update the database and print message
                         //else display error message
-                        if (seatID == tc.getSeatID(seatID) && (currDate.compareTo(recDate) < 0)){
+                        if (seatID == tc.getSeatID(seatID) && (currDate.compareTo(showDate) < 0) && (showTimeDate - todayDate >= 3)){
 
+                            //get Seatcontroller to update database
                             String temp = "seats" + theatreID;
                             SeatController sc = new SeatController(temp);
 
+                            //update database and remove ticket
                             sc.updateSeat(String.valueOf(seatID), "1");
                             tc.removeTicketFromDB(seatID);
 
